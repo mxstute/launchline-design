@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Launchline Design — Professional websites for small businesses. Custom-built, mobile-friendly sites that bring you customers. Free consultation available.">
+<title>Launchline Design | Professional Websites for Small Businesses</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Newsreader:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --midnight: #0C0F1A;
+    --midnight-light: #141829;
+    --midnight-card: #1A1E30;
+    --electric: #3B82F6;
+    --electric-light: #60A5FA;
+    --electric-glow: rgba(59,130,246,0.12);
+    --electric-glow-strong: rgba(59,130,246,0.25);
+    --mint: #34D399;
+    --white: #FFFFFF;
+    --off-white: #F1F5F9;
+    --slate-100: #F1F5F9;
+    --slate-200: #E2E8F0;
+    --slate-400: #94A3B8;
+    --slate-500: #64748B;
+    --slate-600: #475569;
+    --slate-800: #1E293B;
+    --slate-900: #0F172A;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Instrument Sans', sans-serif; color: var(--slate-200); background: var(--midnight); overflow-x: hidden; }
+
+  /* UTILITY */
+  .container { max-width: 1180px; margin: 0 auto; padding: 0 2rem; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    background: rgba(12,15,26,0.92); backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(59,130,246,0.06);
+    padding: 0 2rem; height: 72px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .logo { text-decoration: none; display: flex; align-items: center; gap: 10px; }
+  .logo-mark {
+    width: 36px; height: 36px; background: var(--electric); border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; color: white; font-size: 1.1rem;
+    box-shadow: 0 0 20px rgba(59,130,246,0.3);
+  }
+  .logo-text { font-family: 'Newsreader', serif; font-size: 1.25rem; font-weight: 600; color: var(--white); }
+  .logo-text span { color: var(--electric); }
+
+  .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+  .nav-links a { color: var(--slate-400); text-decoration: none; font-size: 0.88rem; font-weight: 500; transition: color 0.3s; }
+  .nav-links a:hover { color: var(--white); }
+  .nav-cta {
+    background: var(--electric) !important; color: white !important;
+    padding: 10px 22px; border-radius: 8px; font-weight: 600 !important;
+    transition: all 0.3s !important; box-shadow: 0 0 20px rgba(59,130,246,0.2);
+  }
+  .nav-cta:hover { background: var(--electric-light) !important; box-shadow: 0 0 30px rgba(59,130,246,0.35) !important; }
+  .mobile-menu-btn { display: none; background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer; }
+
+  /* HERO */
+  .hero {
+    position: relative; min-height: 100vh;
+    display: flex; align-items: center; padding: 120px 2rem 100px;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse at 20% 50%, rgba(59,130,246,0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 20%, rgba(52,211,153,0.04) 0%, transparent 40%),
+      radial-gradient(ellipse at 50% 100%, rgba(59,130,246,0.05) 0%, transparent 40%);
+  }
+  .hero-grid-pattern {
+    position: absolute; inset: 0; opacity: 0.03;
+    background-image:
+      linear-gradient(rgba(59,130,246,0.5) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(59,130,246,0.5) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  .hero-container {
+    max-width: 1180px; margin: 0 auto; width: 100%;
+    display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 4rem; align-items: center;
+    position: relative; z-index: 1;
+  }
+
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--electric-glow); border: 1px solid rgba(59,130,246,0.2);
+    padding: 8px 16px; border-radius: 100px;
+    font-size: 0.78rem; font-weight: 600; color: var(--electric-light);
+    text-transform: uppercase; letter-spacing: 0.06em;
+    margin-bottom: 1.5rem; animation: fadeUp 0.8s ease;
+  }
+  .hero-eyebrow .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--mint); animation: pulse 2s infinite; }
+
+  .hero h1 {
+    font-family: 'Newsreader', serif; font-size: 3.8rem; font-weight: 700;
+    color: var(--white); line-height: 1.1; letter-spacing: -0.02em;
+    margin-bottom: 1.5rem; animation: fadeUp 0.8s ease 0.1s both;
+  }
+  .hero h1 span { color: var(--electric); }
+
+  .hero-desc {
+    font-size: 1.15rem; color: var(--slate-400); line-height: 1.75;
+    max-width: 500px; margin-bottom: 2.5rem; animation: fadeUp 0.8s ease 0.2s both;
+  }
+
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; animation: fadeUp 0.8s ease 0.3s both; }
+
+  .btn {
+    padding: 16px 32px; border-radius: 10px; font-size: 0.95rem; font-weight: 700;
+    cursor: pointer; transition: all 0.3s; text-decoration: none;
+    display: inline-flex; align-items: center; gap: 8px; border: none;
+    font-family: 'Instrument Sans', sans-serif;
+  }
+  .btn-electric {
+    background: var(--electric); color: white;
+    box-shadow: 0 0 30px rgba(59,130,246,0.25);
+  }
+  .btn-electric:hover { background: var(--electric-light); transform: translateY(-2px); box-shadow: 0 8px 40px rgba(59,130,246,0.35); }
+  .btn-ghost { background: rgba(255,255,255,0.04); color: var(--slate-200); border: 1px solid rgba(255,255,255,0.1); }
+  .btn-ghost:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.2); }
+
+  /* Hero right - metrics */
+  .hero-right { animation: fadeUp 0.8s ease 0.4s both; }
+  .metrics-card {
+    background: var(--midnight-card); border: 1px solid rgba(59,130,246,0.08);
+    border-radius: 20px; padding: 2.5rem; position: relative; overflow: hidden;
+  }
+  .metrics-card::before {
+    content: ''; position: absolute; top: -80px; right: -80px; width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(59,130,246,0.08) 0%, transparent 70%);
+  }
+  .metrics-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; position: relative; z-index: 1; }
+  .metric {
+    text-align: center; padding: 1.5rem 1rem; border-radius: 14px;
+    background: rgba(59,130,246,0.04); border: 1px solid rgba(59,130,246,0.06);
+    transition: all 0.3s;
+  }
+  .metric:hover { background: rgba(59,130,246,0.08); border-color: rgba(59,130,246,0.15); transform: translateY(-3px); }
+  .metric-num { font-family: 'Newsreader', serif; font-size: 2.2rem; font-weight: 700; color: var(--electric); line-height: 1; margin-bottom: 0.3rem; }
+  .metric-label { font-size: 0.78rem; color: var(--slate-400); font-weight: 500; }
+
+  /* SERVICES */
+  .services { padding: 100px 0; position: relative; }
+  .services::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(59,130,246,0.15), transparent);
+  }
+
+  .section-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.14em; color: var(--electric); margin-bottom: 1rem;
+  }
+  .section-eyebrow::before { content: ''; width: 24px; height: 2px; background: var(--electric); border-radius: 2px; }
+  .section-heading {
+    font-family: 'Newsreader', serif; font-size: 2.6rem; font-weight: 700;
+    color: var(--white); line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 1rem;
+  }
+  .section-desc { font-size: 1.05rem; color: var(--slate-400); max-width: 520px; line-height: 1.7; margin-bottom: 3.5rem; }
+
+  .svc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+  .svc-card {
+    background: var(--midnight-card); border-radius: 16px; padding: 2.2rem;
+    border: 1px solid rgba(255,255,255,0.04); transition: all 0.4s;
+    position: relative; overflow: hidden;
+  }
+  .svc-card::after {
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, var(--electric), var(--mint));
+    transform: scaleX(0); transition: transform 0.4s;
+  }
+  .svc-card:hover { transform: translateY(-5px); border-color: rgba(59,130,246,0.12); box-shadow: 0 16px 40px rgba(0,0,0,0.2); }
+  .svc-card:hover::after { transform: scaleX(1); }
+  .svc-icon {
+    width: 50px; height: 50px; border-radius: 12px; background: var(--electric-glow);
+    display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin-bottom: 1.2rem;
+  }
+  .svc-card h3 { font-size: 1.05rem; font-weight: 700; color: var(--white); margin-bottom: 0.5rem; }
+  .svc-card p { font-size: 0.88rem; color: var(--slate-400); line-height: 1.65; }
+
+  /* PORTFOLIO */
+  .portfolio { padding: 100px 0; position: relative; }
+  .portfolio::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(59,130,246,0.15), transparent);
+  }
+
+  .port-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+  .port-card {
+    background: var(--midnight-card); border-radius: 16px; overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.04); transition: all 0.4s;
+  }
+  .port-card:hover { transform: translateY(-5px); border-color: rgba(59,130,246,0.12); box-shadow: 0 16px 40px rgba(0,0,0,0.2); }
+
+  .port-preview {
+    height: 220px; position: relative; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .port-preview-hvac { background: linear-gradient(135deg, #0B1D3A 0%, #132B52 100%); }
+  .port-preview-plumb { background: linear-gradient(135deg, #1A1714 0%, #2A2520 100%); }
+  .port-preview-rest { background: linear-gradient(135deg, #1C1917 0%, #292524 100%); }
+  .port-preview-land { background: linear-gradient(135deg, #1B4332 0%, #245A3F 100%); }
+
+  .port-preview-inner {
+    text-align: center; position: relative; z-index: 1; padding: 1.5rem;
+  }
+  .port-preview-icon { font-size: 2.5rem; margin-bottom: 0.5rem; }
+  .port-preview-name { font-family: 'Newsreader', serif; font-size: 1.3rem; color: white; font-weight: 600; }
+
+  .port-info { padding: 1.5rem 2rem; }
+  .port-niche {
+    display: inline-block; font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.1em; color: var(--electric); background: var(--electric-glow);
+    padding: 4px 12px; border-radius: 100px; margin-bottom: 0.8rem;
+  }
+  .port-card h3 { font-size: 1.1rem; font-weight: 700; color: var(--white); margin-bottom: 0.4rem; }
+  .port-card p { font-size: 0.85rem; color: var(--slate-400); line-height: 1.6; margin-bottom: 1rem; }
+  .port-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 0.85rem; font-weight: 600; color: var(--electric); text-decoration: none;
+    transition: gap 0.3s;
+  }
+  .port-link:hover { gap: 10px; }
+
+  /* PRICING */
+  .pricing { padding: 100px 0; position: relative; }
+  .pricing::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(59,130,246,0.15), transparent);
+  }
+  .pricing-header { text-align: center; margin-bottom: 4rem; }
+  .pricing-header .section-eyebrow { justify-content: center; }
+  .pricing-header .section-desc { margin: 0 auto; }
+
+  .pricing-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; max-width: 800px; margin: 0 auto; }
+
+  .price-card {
+    background: var(--midnight-card); border-radius: 16px; padding: 2.5rem;
+    border: 1px solid rgba(255,255,255,0.04); text-align: center; transition: all 0.4s;
+    position: relative;
+  }
+  .price-card:hover { border-color: rgba(59,130,246,0.12); transform: translateY(-4px); }
+  .price-card.featured {
+    border-color: rgba(59,130,246,0.2);
+    box-shadow: 0 0 40px rgba(59,130,246,0.08);
+  }
+  .price-badge {
+    position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+    background: var(--electric); color: white; padding: 4px 16px; border-radius: 100px;
+    font-size: 0.75rem; font-weight: 700;
+  }
+  .price-card h3 { font-size: 1.1rem; font-weight: 700; color: var(--white); margin-bottom: 1rem; }
+  .price-amount { font-family: 'Newsreader', serif; font-size: 3rem; font-weight: 700; color: var(--electric); line-height: 1; }
+  .price-period { font-size: 0.85rem; color: var(--slate-400); margin-bottom: 2rem; }
+  .price-features { list-style: none; text-align: left; margin-bottom: 2rem; }
+  .price-features li {
+    padding: 0.6rem 0; font-size: 0.88rem; color: var(--slate-400);
+    display: flex; align-items: center; gap: 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+  .price-features li:last-child { border-bottom: none; }
+  .check { color: var(--mint); font-weight: 700; }
+
+  /* PROCESS */
+  .process { padding: 100px 0; position: relative; }
+  .process::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(59,130,246,0.15), transparent);
+  }
+
+  .process-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
+  .process-step {
+    text-align: center; padding: 2rem 1.5rem; border-radius: 14px;
+    background: var(--midnight-card); border: 1px solid rgba(255,255,255,0.04);
+    transition: all 0.4s; position: relative;
+  }
+  .process-step:hover { border-color: rgba(59,130,246,0.12); transform: translateY(-4px); }
+  .step-num {
+    font-family: 'Newsreader', serif; font-size: 2.5rem; font-weight: 700;
+    color: rgba(59,130,246,0.15); line-height: 1; margin-bottom: 0.8rem;
+  }
+  .process-step h4 { font-size: 1rem; font-weight: 700; color: var(--white); margin-bottom: 0.5rem; }
+  .process-step p { font-size: 0.82rem; color: var(--slate-400); line-height: 1.6; }
+
+  /* TESTIMONIALS */
+  .testimonials { padding: 100px 0; position: relative; }
+  .testimonials::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(59,130,246,0.15), transparent);
+  }
+
+  .test-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+  .test-card {
+    background: var(--midnight-card); border-radius: 16px; padding: 2rem;
+    border: 1px solid rgba(255,255,255,0.04); transition: transform 0.3s;
+  }
+  .test-card:hover { transform: translateY(-4px); }
+  .test-stars { color: #FBBF24; font-size: 0.9rem; letter-spacing: 2px; margin-bottom: 1rem; }
+  .test-card blockquote { font-size: 0.9rem; color: var(--slate-400); line-height: 1.7; margin-bottom: 1.5rem; font-style: italic; }
+  .test-author { display: flex; align-items: center; gap: 0.8rem; }
+  .test-avatar {
+    width: 40px; height: 40px; border-radius: 50%; background: var(--electric-glow);
+    color: var(--electric); display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 0.8rem;
+  }
+  .test-name { font-weight: 700; font-size: 0.85rem; color: var(--white); }
+  .test-role { font-size: 0.75rem; color: var(--slate-500); }
+
+  /* CTA */
+  .cta {
+    padding: 100px 0; text-align: center; position: relative; overflow: hidden;
+  }
+  .cta::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(59,130,246,0.15), transparent);
+  }
+  .cta-glow {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(59,130,246,0.06) 0%, transparent 60%);
+  }
+  .cta-inner { position: relative; z-index: 1; }
+  .cta .section-heading { font-size: 3rem; margin-bottom: 1rem; }
+  .cta p { font-size: 1.1rem; color: var(--slate-400); max-width: 480px; margin: 0 auto 1.5rem; line-height: 1.7; }
+  .cta-phone {
+    display: block; font-family: 'Newsreader', serif; font-size: 2rem;
+    color: var(--electric); text-decoration: none; margin-bottom: 0.5rem; transition: color 0.3s;
+  }
+  .cta-phone:hover { color: var(--electric-light); }
+  .cta-email {
+    display: block; font-size: 1rem; color: var(--slate-400); text-decoration: none;
+    margin-bottom: 2.5rem; transition: color 0.3s;
+  }
+  .cta-email:hover { color: var(--white); }
+
+  /* FOOTER */
+  footer {
+    background: rgba(10,12,20,0.8); padding: 50px 0 30px;
+    border-top: 1px solid rgba(59,130,246,0.06);
+  }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+  .footer-brand p { font-size: 0.85rem; color: var(--slate-500); line-height: 1.7; max-width: 280px; margin-top: 1rem; }
+  .footer-col h4 { font-size: 0.78rem; font-weight: 700; color: var(--white); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1.2rem; }
+  .footer-col a { display: block; color: var(--slate-500); text-decoration: none; font-size: 0.85rem; margin-bottom: 0.65rem; transition: color 0.3s; }
+  .footer-col a:hover { color: var(--electric); }
+  .footer-bottom {
+    padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.04);
+    text-align: center; font-size: 0.76rem; color: var(--slate-500);
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(25px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+  .anim { opacity: 0; transform: translateY(25px); transition: all 0.6s ease; }
+  .anim.visible { opacity: 1; transform: translateY(0); }
+
+  /* RESPONSIVE */
+  @media (max-width: 1024px) {
+    .hero h1 { font-size: 3rem; }
+    .svc-grid { grid-template-columns: repeat(2, 1fr); }
+    .process-grid { grid-template-columns: repeat(2, 1fr); }
+    .test-grid { grid-template-columns: repeat(2, 1fr); }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .mobile-menu-btn { display: block; }
+    .hero-container { grid-template-columns: 1fr; text-align: center; }
+    .hero-desc { margin-left: auto; margin-right: auto; }
+    .hero-btns { justify-content: center; }
+    .hero h1 { font-size: 2.4rem; }
+    .section-heading { font-size: 2rem; }
+    .svc-grid, .port-grid, .pricing-grid, .process-grid, .test-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .cta .section-heading { font-size: 2.2rem; }
+    .metrics-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">
+    <div class="logo-mark">L</div>
+    <span class="logo-text">Launch<span>line</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#contact" class="nav-cta">Free Consultation</a></li>
+  </ul>
+  <button class="mobile-menu-btn" onclick="document.querySelector('.nav-links').style.display = document.querySelector('.nav-links').style.display === 'flex' ? 'none' : 'flex'">☰</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid-pattern"></div>
+  <div class="hero-container">
+    <div>
+      <div class="hero-eyebrow"><span class="dot"></span> Now Accepting New Clients</div>
+      <h1>We Build Websites That <span>Bring You Customers</span></h1>
+      <p class="hero-desc">Custom-built, mobile-friendly websites for small businesses — designed to look incredible, load fast, and turn visitors into paying customers. No templates. No page builders. Just clean, professional sites built from scratch.</p>
+      <div class="hero-btns">
+        <a href="#contact" class="btn btn-electric">Get a Free Consultation →</a>
+        <a href="#portfolio" class="btn btn-ghost">See Our Work</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="metrics-card">
+        <div class="metrics-grid">
+          <div class="metric"><div class="metric-num">50+</div><div class="metric-label">Sites Launched</div></div>
+          <div class="metric"><div class="metric-num">4.9★</div><div class="metric-label">Client Rating</div></div>
+          <div class="metric"><div class="metric-num">7 Day</div><div class="metric-label">Avg. Delivery</div></div>
+          <div class="metric"><div class="metric-num">100%</div><div class="metric-label">Satisfaction Rate</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="container">
+    <div class="section-eyebrow">What We Do</div>
+    <h2 class="section-heading">Everything Your Business Needs Online</h2>
+    <p class="section-desc">We handle the entire process — from design to launch to ongoing maintenance. You focus on running your business while we make sure you look great online.</p>
+    <div class="svc-grid">
+      <div class="svc-card anim"><div class="svc-icon">🎨</div><h3>Custom Website Design</h3><p>Every site we build is designed from scratch around your brand, your services, and your customers. No cookie-cutter templates.</p></div>
+      <div class="svc-card anim"><div class="svc-icon">📱</div><h3>Mobile-First Development</h3><p>Over 70% of your customers will find you on their phone. Every site we build looks and works perfectly on every device.</p></div>
+      <div class="svc-card anim"><div class="svc-icon">🔍</div><h3>Search Engine Optimization</h3><p>We build SEO best practices into every page so your business shows up when people search for your services on Google.</p></div>
+      <div class="svc-card anim"><div class="svc-icon">⚡</div><h3>Lightning-Fast Performance</h3><p>Slow websites lose customers. We optimize every site for fast load times and smooth performance — under 2 seconds.</p></div>
+      <div class="svc-card anim"><div class="svc-icon">🛡️</div><h3>Hosting & Maintenance</h3><p>We keep your site live, secure, and up to date. If anything ever needs fixing or updating, we handle it — included in your plan.</p></div>
+      <div class="svc-card anim"><div class="svc-icon">📊</div><h3>Analytics & Reporting</h3><p>Know exactly how many people visit your site, where they come from, and what they do. We set up tracking so you can see results.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section class="portfolio" id="portfolio">
+  <div class="container">
+    <div class="section-eyebrow">Our Work</div>
+    <h2 class="section-heading">Sites We've Built</h2>
+    <p class="section-desc">Every project is custom-designed for the client's industry. Here's a look at some of our recent work across different sectors.</p>
+    <div class="port-grid">
+      <div class="port-card anim">
+        <div class="port-preview port-preview-hvac">
+          <div class="port-preview-inner"><div class="port-preview-icon">❄️</div><div class="port-preview-name">Summit Air Co.</div></div>
+        </div>
+        <div class="port-info">
+          <span class="port-niche">HVAC</span>
+          <h3>Summit Air Co.</h3>
+          <p>Full-service HVAC company website with emergency service CTAs, service breakdowns, and customer testimonials.</p>
+          <a href="https://mxstute.github.io/summit-air-demo/" target="_blank" class="port-link">View Live Site →</a>
+        </div>
+      </div>
+      <div class="port-card anim">
+        <div class="port-preview port-preview-plumb">
+          <div class="port-preview-inner"><div class="port-preview-icon">🔧</div><div class="port-preview-name">Copperline Plumbing</div></div>
+        </div>
+        <div class="port-info">
+          <span class="port-niche">Plumbing</span>
+          <h3>Copperline Plumbing</h3>
+          <p>Warm, trustworthy plumbing company site with flat-rate pricing emphasis, 24/7 emergency callout, and satisfaction guarantee.</p>
+          <a href="https://mxstute.github.io/copperline-plumbing-demo/" target="_blank" class="port-link">View Live Site →</a>
+        </div>
+      </div>
+      <div class="port-card anim">
+        <div class="port-preview port-preview-rest">
+          <div class="port-preview-inner"><div class="port-preview-icon">🔥</div><div class="port-preview-name">Ember & Oak Kitchen</div></div>
+        </div>
+        <div class="port-info">
+          <span class="port-niche">Restaurant</span>
+          <h3>Ember & Oak Kitchen</h3>
+          <p>Upscale farm-to-table restaurant site with menu highlights, hours, reservation CTA, and editorial-quality design.</p>
+          <a href="https://mxstute.github.io/ember-oak-demo/" target="_blank" class="port-link">View Live Site →</a>
+        </div>
+      </div>
+      <div class="port-card anim">
+        <div class="port-preview port-preview-land">
+          <div class="port-preview-inner"><div class="port-preview-icon">🌿</div><div class="port-preview-name">Greenstone Landscaping</div></div>
+        </div>
+        <div class="port-info">
+          <span class="port-niche">Landscaping</span>
+          <h3>Greenstone Landscaping</h3>
+          <p>Fresh, outdoor-feeling landscaping site with seasonal specials, full service grid, and before/after portfolio emphasis.</p>
+          <a href="https://mxstute.github.io/greenstone-landscaping-demo/" target="_blank" class="port-link">View Live Site →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="container">
+    <div class="pricing-header">
+      <div class="section-eyebrow">Simple Pricing</div>
+      <h2 class="section-heading">Transparent. No Surprises.</h2>
+      <p class="section-desc">One upfront cost to build your site. One monthly fee to keep it running. That's it.</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="price-card anim">
+        <h3>Website Build</h3>
+        <div class="price-amount">$1,000</div>
+        <div class="price-period">one-time</div>
+        <ul class="price-features">
+          <li><span class="check">✓</span> Custom design from scratch</li>
+          <li><span class="check">✓</span> Mobile-responsive on all devices</li>
+          <li><span class="check">✓</span> SEO-optimized structure</li>
+          <li><span class="check">✓</span> Contact forms & click-to-call</li>
+          <li><span class="check">✓</span> Google Maps integration</li>
+          <li><span class="check">✓</span> Delivered in 7 business days</li>
+        </ul>
+        <a href="#contact" class="btn btn-electric" style="width: 100%; justify-content: center;">Get Started →</a>
+      </div>
+      <div class="price-card featured anim">
+        <div class="price-badge">Ongoing</div>
+        <h3>Maintenance Plan</h3>
+        <div class="price-amount">$99</div>
+        <div class="price-period">per month</div>
+        <ul class="price-features">
+          <li><span class="check">✓</span> Hosting & domain management</li>
+          <li><span class="check">✓</span> SSL security certificate</li>
+          <li><span class="check">✓</span> Monthly content updates</li>
+          <li><span class="check">✓</span> Performance monitoring</li>
+          <li><span class="check">✓</span> Priority support</li>
+          <li><span class="check">✓</span> Uptime guarantee</li>
+        </ul>
+        <a href="#contact" class="btn btn-electric" style="width: 100%; justify-content: center;">Get Started →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process">
+  <div class="container">
+    <div class="section-eyebrow">How It Works</div>
+    <h2 class="section-heading">From Call to Launch in 4 Steps</h2>
+    <p class="section-desc">We've streamlined the process so you spend less time on your website and more time running your business.</p>
+    <div class="process-grid">
+      <div class="process-step anim"><div class="step-num">01</div><h4>Free Consultation</h4><p>We learn about your business, your goals, and what you need from your website. No pressure, no commitment.</p></div>
+      <div class="process-step anim"><div class="step-num">02</div><h4>Design & Build</h4><p>We design and code your site from scratch, tailored to your brand and optimized for your customers.</p></div>
+      <div class="process-step anim"><div class="step-num">03</div><h4>Review & Launch</h4><p>You review the finished site, request any changes, and we launch it live on your custom domain.</p></div>
+      <div class="process-step anim"><div class="step-num">04</div><h4>Ongoing Support</h4><p>We manage hosting, updates, and support so your site stays fast, secure, and looking great — always.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="container">
+    <div class="section-eyebrow">Client Reviews</div>
+    <h2 class="section-heading">What Our Clients Say</h2>
+    <p class="section-desc">We let our work and our relationships speak for themselves.</p>
+    <div class="test-grid">
+      <div class="test-card anim">
+        <div class="test-stars">★★★★★</div>
+        <blockquote>"We didn't have a website for years because we thought it would be too expensive and complicated. Launchline made the whole thing painless. Our site looks incredible and we've gotten new calls because of it."</blockquote>
+        <div class="test-author"><div class="test-avatar">RJ</div><div><div class="test-name">Robert J.</div><div class="test-role">HVAC Company Owner</div></div></div>
+      </div>
+      <div class="test-card anim">
+        <div class="test-stars">★★★★★</div>
+        <blockquote>"I was paying another company $200 a month for a site that looked like it was from 2005. Launchline rebuilt it for a fraction of the cost and it actually brings in customers now."</blockquote>
+        <div class="test-author"><div class="test-avatar">TM</div><div><div class="test-name">Tamika M.</div><div class="test-role">Restaurant Owner</div></div></div>
+      </div>
+      <div class="test-card anim">
+        <div class="test-stars">★★★★★</div>
+        <blockquote>"Fast, professional, and easy to work with. They had our site done in less than a week and it looked better than anything we could have imagined. Highly recommend."</blockquote>
+        <div class="test-author"><div class="test-avatar">DK</div><div><div class="test-name">Daniel K.</div><div class="test-role">Landscaping Business Owner</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta" id="contact">
+  <div class="cta-glow"></div>
+  <div class="container cta-inner">
+    <div class="section-eyebrow" style="justify-content: center;">Get Started</div>
+    <h2 class="section-heading">Ready for a Website That Works?</h2>
+    <p>Get in touch for a free, no-pressure consultation. We'll learn about your business and show you exactly what we can build for you.</p>
+    <a href="tel:+16514929843" class="cta-phone">📞 (651) 492-9843</a>
+    <a href="mailto:mxstute@launchlinedesign.com" class="cta-email">mxstute@launchlinedesign.com</a>
+    <a href="mailto:mxstute@launchlinedesign.com?subject=Free%20Consultation%20Request" class="btn btn-electric" style="font-size: 1.05rem; padding: 18px 40px;">Book Your Free Consultation →</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="logo-text" style="font-family: 'Newsreader', serif; font-size: 1.2rem; color: var(--white);">Launch<span style="color: var(--electric);">line</span> Design</span>
+        <p>Professional websites for small businesses. Custom-built, mobile-friendly sites that turn visitors into customers — backed by ongoing support you can count on.</p>
+      </div>
+      <div class="footer-col"><h4>Services</h4><a href="#">Web Design</a><a href="#">Development</a><a href="#">SEO</a><a href="#">Maintenance</a></div>
+      <div class="footer-col"><h4>Company</h4><a href="#">Portfolio</a><a href="#">Pricing</a><a href="#">Process</a><a href="#">Reviews</a></div>
+      <div class="footer-col"><h4>Contact</h4><a href="tel:+16514929843">(651) 492-9843</a><a href="mailto:mxstute@launchlinedesign.com">mxstute@launchlinedesign.com</a><a href="#">Nationwide</a></div>
+    </div>
+    <div class="footer-bottom">&copy; 2026 Launchline Design. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) setTimeout(() => entry.target.classList.add('visible'), i * 70);
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.anim').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
