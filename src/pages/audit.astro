@@ -1,0 +1,82 @@
+---
+import Base from "../layouts/Base.astro";
+import CalEmbed from "../components/CalEmbed.astro";
+import DemoForm from "../components/DemoForm.astro";
+import PageHero from "../components/PageHero.astro";
+import { auditOffer } from "../data/pricing";
+import { site } from "../data/site";
+
+const title = "AI Missed-Revenue Audit | Launchline Design";
+const description =
+  "A $297 audit of missed calls, your Google profile, the website, and follow-up. Credited toward setup if you start within 30 days. Scorecard in 3 business days.";
+---
+
+<Base title={title} description={description}>
+  <PageHero
+    eyebrow="Miami · 3 business days"
+    title="Find out where leads leak before you spend a dollar on AI."
+    lede={`${auditOffer.price}. ${auditOffer.text} You get a one-page scorecard, a 10-minute Loom, and a 30/60/90-day plan.`}
+    crumbs={[
+      { href: "/", label: "Home" },
+      { href: "/audit", label: "Audit" },
+    ]}
+  />
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>What the $297 audit covers</h2>
+      </div>
+      <div class="cards quarters">
+      <article class="panel">
+        <h3>Mystery-shop test</h3>
+        <p>We call during business hours and after hours, submit the web form, and message the chat. Every response is timed.</p>
+      </article>
+      <article class="panel">
+        <h3>Google presence</h3>
+        <p>Business Profile score, a map-pack rank grid for your top three services, and review count and rating against three local competitors.</p>
+      </article>
+      <article class="panel">
+        <h3>Website</h3>
+        <p>Speed, mobile experience, click-to-call, online booking, chat, and whether the tracking is actually on.</p>
+      </article>
+      <article class="panel">
+        <h3>Follow-up and the estimate</h3>
+        <p>What happens to an open estimate or a past customer today. The missed-revenue line uses your missed calls, your close rate, and your average ticket.</p>
+      </article>
+      </div>
+    </div>
+  </section>
+  <section class="section" id="request" style="padding-top: 0">
+    <div class="wrap loom-grid">
+      <div>
+        <p class="eyebrow">Request it</p>
+        <h2>Tell us the business. We send the scorecard.</h2>
+        <p class="lede">The same form posts to Formspree and then opens the thank-you page. Prefer to talk it through first? Pick a time on the calendar.</p>
+        <p class="small" style="margin-top: 1rem">
+          The path after the audit is a free Loom or a call with Ava, then this audit, then the 14-day Starter pilot or Growth, then Full Stack if the whole journey is the job.
+        </p>
+      </div>
+      <DemoForm
+        id="audit-form"
+        intent="audit"
+        subject="Launchline missed-revenue audit"
+        submitLabel="Request the audit"
+        note="Send the business and the website. We’ll run the missed-revenue audit and reply with the scorecard timing."
+      />
+    </div>
+  </section>
+  <section class="section" id="book" style="padding-top: 0">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Or book Myles</p>
+        <h2>Pick a time. The profile lists the open events.</h2>
+      </div>
+      <CalEmbed />
+      <p class="small" style="margin-top: 0.8rem">
+        Office <a class="text-link" href={`tel:${site.phoneTel}`}>{site.phoneDisplay}</a>
+        {" · "}
+        <a class="text-link" href={`mailto:${site.email}`}>{site.email}</a>
+      </p>
+    </div>
+  </section>
+</Base>

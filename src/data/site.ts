@@ -10,12 +10,12 @@ export const site = {
   serviceArea: "Miami-Dade County",
   founder: "Myles Stute",
   otherBusiness: "Magic City Services",
-  email: "Myles@launchlinedesign.com",
+  email: "mxstute@launchlinedesign.com",
   phoneDisplay: "(786) 229-4730",
   phoneTel: "+17862294730",
   phoneSchema: "+1-786-229-4730",
   description:
-    "Done-for-you AI that answers, books, and follows up for Miami home services, law firms, med spas, and dental practices.",
+    "Done-for-you AI for Miami local businesses: more leads, a receptionist that books, reviews and reactivation, and the operations behind them.",
 } as const;
 
 /** Live AI receptionist. Not the office line. */
@@ -69,23 +69,32 @@ export function streetAddress(): string | null {
 
 export const nav = {
   solutions: [
-    { href: "/ai-receptionist", label: "AI Receptionist", note: "Answers, qualifies, and books" },
-    { href: "/automation", label: "Automation", note: "Text-back, reviews, follow-up" },
-    { href: "/custom-ai", label: "Custom AI", note: "From a chatbot to the whole workflow" },
+    { href: "/services", label: "All services", note: "Four pillars, one stack" },
+    { href: "/get-more-leads", label: "Get More Leads", note: "Search, ads, and nothing slips" },
+    { href: "/convert-and-book", label: "Convert & Book", note: "Answer, qualify, and book" },
+    { href: "/keep-customers", label: "Keep & Grow", note: "Reviews, reactivation, referrals" },
+    { href: "/operations", label: "Operations", note: "CRM, reporting, invoicing" },
   ],
   industries: [
+    { href: "/industries/roofing", label: "Roofing" },
+    { href: "/industries/hvac", label: "HVAC" },
+    { href: "/industries/pest-control", label: "Pest control" },
+    { href: "/industries/plumbing", label: "Plumbing" },
     { href: "/industries/home-services", label: "Home services" },
     { href: "/industries/law-firms", label: "Law firms" },
     { href: "/industries/med-spas", label: "Med spas" },
     { href: "/industries/dental", label: "Dental" },
   ],
   primary: [
+    { href: "/audit", label: "Audit" },
     { href: "/demo", label: "Demo" },
     { href: "/pricing", label: "Pricing" },
-    { href: "/about", label: "About" },
   ],
   company: [
     { href: "/how-it-works", label: "How it works" },
+    { href: "/audit", label: "Missed-revenue audit" },
+    { href: "/integrations", label: "Integrations" },
+    { href: "/es", label: "Español" },
     { href: "/demo", label: "Demo" },
     { href: "/pricing", label: "Pricing" },
     { href: "/about", label: "About" },
@@ -150,15 +159,46 @@ export function businessJsonLd(): Record<string, unknown> {
         },
         {
           "@type": "Offer",
+          name: "Full Stack",
+          url: `${site.url}/pricing`,
+          priceCurrency: "USD",
+          description:
+            "$4,997 setup and $1,497 per month. Growth plus bilingual coverage, follow-up, local SEO, reviews, CRM, reporting, and invoicing.",
+        },
+        {
+          "@type": "Offer",
           name: "Custom AI Systems",
           url: `${site.url}/pricing`,
           priceCurrency: "USD",
-          description: "From $3,500 setup and from $997 per month. Workflow automation, integrations, and internal AI tools.",
+          description:
+            "From $3,500 setup and from $997 per month. Scoped builds such as an internal assistant or a complex integration.",
+        },
+        {
+          "@type": "Offer",
+          name: "AI Missed-Revenue Audit",
+          url: `${site.url}/audit`,
+          price: "297",
+          priceCurrency: "USD",
+          description: "$297, credited toward any setup fee if you start within 30 days.",
         },
       ],
     },
   };
 }
+
+export const solutionPaths = [
+  "/services",
+  "/get-more-leads",
+  "/convert-and-book",
+  "/keep-customers",
+  "/operations",
+  "/ai-receptionist",
+  "/missed-call-text-back",
+  "/ai-chat-widget",
+  "/google-business-profile-optimization-miami",
+  "/review-automation",
+  "/customer-reactivation",
+] as const;
 
 export function jsonLdScript(data: unknown): string {
   return JSON.stringify(data).replace(/</g, "\\u003c");

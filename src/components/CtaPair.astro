@@ -4,10 +4,11 @@ import { DEMO_LINE } from "../data/site";
 interface Props {
   demo?: boolean;
   book?: boolean;
+  audit?: boolean;
   loomHref?: string;
 }
 
-const { demo = true, book = true, loomHref } = Astro.props;
+const { demo = true, book = true, audit = false, loomHref } = Astro.props;
 ---
 
 <div class="cta-row">
@@ -18,6 +19,7 @@ const { demo = true, book = true, loomHref } = Astro.props;
       </a>
     )
   }
+  {audit && <a class="btn btn-ghost" href="/audit">Get your audit</a>}
   {book && <a class="btn btn-ghost" href="/contact">Book a 15-min strategy call</a>}
   {loomHref && <a class="btn btn-primary" href={loomHref}>Get my custom demo</a>}
 </div>

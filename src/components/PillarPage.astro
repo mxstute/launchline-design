@@ -1,0 +1,109 @@
+---
+import AvaSection from "./AvaSection.astro";
+import CtaPair from "./CtaPair.astro";
+import FinalCta from "./FinalCta.astro";
+import PageHero from "./PageHero.astro";
+import Base from "../layouts/Base.astro";
+import { customBuild } from "../data/pricing";
+import {
+  complianceLine,
+  getPillar,
+  ownershipLine,
+  servicesFor,
+  type PillarId,
+} from "../data/services";
+
+interface Props {
+  id: PillarId;
+}
+
+const { id } = Astro.props;
+const pillar = getPillar(id);
+const items = servicesFor(id);
+---
+
+<Base title={pillar.title} description={pillar.description}>
+  <PageHero
+    eyebrow={pillar.eyebrow}
+    title={pillar.h1}
+    lede={pillar.lede}
+    crumbs={[
+      { href: "/", label: "Home" },
+      { href: "/services", label: "Services" },
+      { href: pillar.href, label: pillar.name },
+    ]}
+  >
+    <CtaPair audit />
+  </PageHero>
+
+  {id === "convert" && <AvaSection loomHref="/demo#custom-demo" />}
+
+  <section class="section">
+    <div class="wrap stack">
+      <p class="lede" style="max-width: 62ch">{pillar.intro}</p>
+      {
+        items.map((service) => (
+          <article class="panel service-block" id={service.id}>
+            <div>
+              <h2>{service.href ? <a href={service.href}>{service.name}</a> : service.name}</h2>
+              <p>{service.outcome}</p>
+              <p class="service-meta">
+                <span>{service.price}</span>
+                <span>{service.launch}</span>
+              </p>
+            </div>
+            <div>
+              <h3>What’s included</h3>
+              <ul class="plain-list">
+                {service.included.map((line) => (
+                  <li>{line}</li>
+                ))}
+              </ul>
+              <p>
+                <strong>Tools. </strong>
+                {service.tools}
+              </p>
+              {service.note && <p class="small">{service.note}</p>}
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  {
+    id === "ops" && (
+      <section class="section" id="custom-ai" style="padding-top: 0">
+        <div class="wrap panel">
+          <p class="eyebrow">Scoped projects</p>
+          <h2>{customBuild.name}</h2>
+          <p class="service-meta">
+            <span>{customBuild.price}</span>
+          </p>
+          <p>{customBuild.text}</p>
+          <p>
+            These are categories of work Launchline will propose: an internal assistant, a knowledge bot from your own SOPs, or an integration the packaged stack does not cover. They are not case studies, and this site does not claim a measured result for any of them.
+          </p>
+          <p>
+            <a class="text-link" href="/pricing">
+              See Custom next to Full Stack
+            </a>
+          </p>
+        </div>
+      </section>
+    )
+  }
+
+  <section class="section" style="padding-top: 0">
+    <div class="wrap prose">
+      <p>{ownershipLine}</p>
+      <p>{complianceLine}</p>
+      <p>
+        <a class="text-link" href="/services">All four pillars</a>
+        {" · "}
+        <a class="text-link" href="/pricing">Pricing</a>
+      </p>
+    </div>
+  </section>
+  <FinalCta />
+</Base>

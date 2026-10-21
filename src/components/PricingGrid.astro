@@ -1,5 +1,14 @@
 ---
-import { addons, pilot, pricingNotes, tiers } from "../data/pricing";
+import {
+  addonGroups,
+  auditOffer,
+  customBuild,
+  fullStackExcludes,
+  fullStackMath,
+  pilot,
+  pricingNotes,
+  tiers,
+} from "../data/pricing";
 
 interface Props {
   showAddons?: boolean;
@@ -45,55 +54,64 @@ const { showAddons = true } = Astro.props;
             <strong style="color: white">Best for: </strong>
             {tier.fit}
           </p>
+          <p class="small" style="margin-top: 0.45rem">{tier.launch}</p>
         </div>
       </article>
     ))
   }
 </div>
 
+<p class="small" style="margin-top: 1rem; max-width: 70ch">{fullStackMath}</p>
+<p class="small" style="max-width: 70ch">{fullStackExcludes}</p>
+
+<section class="panel custom-line" id="custom" style="margin-top: 1rem">
+  <p class="tier-step">Scoped projects</p>
+  <h3 style="margin-top: 0.3rem">{customBuild.name}</h3>
+  <p class="service-meta"><span>{customBuild.price}</span></p>
+  <p>{customBuild.text}</p>
+  <p><a class="text-link" href="/operations#custom-ai">What a custom build covers</a></p>
+</section>
+
 {
   showAddons && (
-    <div class="bottom-grid" style="margin-top: 1rem">
-      <section class="panel" aria-labelledby="addons-heading">
-        <p class="eyebrow" id="addons-heading">Add-ons</p>
-        <p class="small" style="margin-bottom: 0.4rem">Setup · monthly, unless noted</p>
-        <ul class="addon-list">
-          {addons.map((addon) => (
-            <li>
-              <div>
-                <strong>{addon.name}</strong>
-                <span class="small">{addon.detail}</span>
-              </div>
-              <span class="addon-price">{addon.price}</span>
-            </li>
-          ))}
-        </ul>
-      </section>
-      <div class="side-stack">
-        <section class="panel" aria-labelledby="menu-steps">
-          <p class="eyebrow" id="menu-steps">How a package starts</p>
-          <ol class="steps" style="margin-top: 0.4rem">
-            <li class="step">
-              <span class="step-num">1</span>
-              <p><strong style="color: white">Free demo.</strong> You’ve seen your personalized Loom.</p>
-            </li>
-            <li class="step">
-              <span class="step-num">2</span>
-              <p><strong style="color: white">15-minute call.</strong> We pick a package and map your calls.</p>
-            </li>
-            <li class="step">
-              <span class="step-num">3</span>
-              <p><strong style="color: white">Live in as little as 7 days.</strong> You approve every script.</p>
-            </li>
-          </ol>
-        </section>
+    <>
+      <div class="pair" style="margin-top: 1rem">
         <section class="pilot">
           <p class="slot-kicker">{pilot.kicker}</p>
           <h3>{pilot.title}</h3>
           <p>{pilot.text}</p>
         </section>
+        <section class="panel">
+          <p class="slot-kicker">{auditOffer.kicker}</p>
+          <h3>{auditOffer.title}</h3>
+          <p class="service-meta"><span>{auditOffer.price}</span></p>
+          <p>{auditOffer.text}</p>
+          <p><a class="text-link" href={auditOffer.href}>Book the audit</a></p>
+        </section>
       </div>
-    </div>
+      <section aria-labelledby="addons-heading" style="margin-top: 1.5rem">
+        <p class="eyebrow" id="addons-heading">Add-ons by pillar</p>
+        <p class="small" style="margin-bottom: 0.8rem">Starting prices. Setup and monthly unless noted.</p>
+        <div class="addon-groups">
+          {addonGroups.map((group) => (
+            <section class="panel">
+              <h3>{group.name}</h3>
+              <ul class="addon-list">
+                {group.items.map((addon) => (
+                  <li>
+                    <div>
+                      <strong>{addon.name}</strong>
+                      <span class="small">{addon.detail}</span>
+                    </div>
+                    <span class="addon-price">{addon.price}</span>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ))}
+        </div>
+      </section>
+    </>
   )
 }
 

@@ -1,6 +1,6 @@
 ---
 import Logo from "./Logo.astro";
-import { nav, site } from "../data/site";
+import { nav, site, solutionPaths } from "../data/site";
 
 const path = Astro.url.pathname.replace(/\/$/, "") || "/";
 
@@ -8,7 +8,7 @@ function current(href: string): boolean {
   return path === href;
 }
 
-const onSolutions = nav.solutions.some((item) => current(item.href));
+const onSolutions = (solutionPaths as readonly string[]).includes(path);
 const onIndustries = nav.industries.some((item) => current(item.href));
 ---
 

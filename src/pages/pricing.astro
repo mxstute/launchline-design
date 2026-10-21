@@ -4,27 +4,29 @@ import CtaPair from "../components/CtaPair.astro";
 import FinalCta from "../components/FinalCta.astro";
 import PageHero from "../components/PageHero.astro";
 import PricingGrid from "../components/PricingGrid.astro";
+import RevenueCalc from "../components/RevenueCalc.astro";
 
 const title = "AI Receptionist Pricing | Launchline Design";
 const description =
-  "Starter is $497 setup and $197 a month. Growth is $1,497 and $497 a month. Custom AI starts at $3,500 and $997 a month. Usage at cost. Free 14-day Starter pilot.";
+  "Starter is $497 setup and $197 a month. Growth is $1,497 and $497. Full Stack is $4,997 and $1,497. Custom starts at $3,500. The missed-revenue audit is $297. Usage at cost.";
 ---
 
 <Base title={title} description={description}>
   <PageHero
     eyebrow="Miami · USD"
     title="Simple packages. Your quote is confirmed on the call."
-    lede="Done-for-you AI that answers, follows up, and books for your business 24/7. Start small, see it work on your own calls, and grow into custom AI systems built around how you operate."
+    lede="Starter and Growth are unchanged. Full Stack is the packaged journey at $4,997 to set up and $1,497 a month. Custom AI Systems stays a separate, scoped line. The $297 audit is credited toward setup if you start within 30 days."
     crumbs={[
       { href: "/", label: "Home" },
       { href: "/pricing", label: "Pricing" },
     ]}
   >
-    <CtaPair />
+    <CtaPair audit />
   </PageHero>
 
   <section class="section">
-    <div class="wrap">
+    <div class="wrap stack">
+      <RevenueCalc />
       <PricingGrid />
     </div>
   </section>

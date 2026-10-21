@@ -10,12 +10,17 @@ export default defineConfig({
   build: {
     format: "file",
   },
+  redirects: {
+    "/automation": "/keep-customers",
+    "/custom-ai": "/operations",
+  },
   vite: {
     plugins: [tailwindcss()],
   },
   integrations: [
     sitemap({
-      filter: (page) => !page.includes("/thanks"),
+      filter: (page) =>
+        !page.includes("/thanks") && !page.includes("/automation") && !page.includes("/custom-ai"),
     }),
   ],
 });

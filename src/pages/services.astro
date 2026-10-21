@@ -1,0 +1,50 @@
+---
+import Base from "../layouts/Base.astro";
+import CtaPair from "../components/CtaPair.astro";
+import FinalCta from "../components/FinalCta.astro";
+import PageHero from "../components/PageHero.astro";
+import { pillars, servicesFor } from "../data/services";
+
+const title = "AI Services for Miami Businesses | Launchline Design";
+const description =
+  "Four pillars: get more leads, convert and book, keep customers, and run operations. Start with one service and add the next when it pays for itself.";
+---
+
+<Base title={title} description={description}>
+  <PageHero
+    eyebrow="The AI growth stack"
+    title="Start with one service. Add the next when it pays for itself."
+    lede="Four pillars cover the path from the first search to the paid invoice. Starter and Growth are unchanged. Full Stack is the packaged journey. Custom stays a scoped build."
+    crumbs={[
+      { href: "/", label: "Home" },
+      { href: "/services", label: "Services" },
+    ]}
+  >
+    <CtaPair audit />
+  </PageHero>
+
+  <section class="section">
+    <div class="wrap stack">
+      {
+        pillars.map((pillar) => (
+          <article class="panel">
+            <p class="eyebrow">{pillar.eyebrow}</p>
+            <h2><a href={pillar.href}>{pillar.name}</a></h2>
+            <p>{pillar.lede}</p>
+            <ul class="plain-list">
+              {servicesFor(pillar.id).map((service) => (
+                <li>
+                  {service.href ? <a href={service.href}>{service.name}</a> : service.name}
+                  {" · "}
+                  {service.price}
+                </li>
+              ))}
+            </ul>
+            <p><a class="text-link" href={pillar.href}>Open {pillar.name}</a></p>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+  <FinalCta />
+</Base>

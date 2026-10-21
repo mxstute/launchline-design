@@ -1,0 +1,60 @@
+---
+import Base from "../layouts/Base.astro";
+import CtaPair from "../components/CtaPair.astro";
+import FinalCta from "../components/FinalCta.astro";
+import PageHero from "../components/PageHero.astro";
+
+const title = "Integrations | Launchline Design";
+const description =
+  "Launchline connects to ServiceTitan, Jobber, Housecall Pro, Clio, GoHighLevel, Cal.com, QuickBooks, Stripe, and Google. The connection is confirmed on the call.";
+
+const tools = [
+  { name: "ServiceTitan", line: "Jobs, memberships, and estimate status for shops that already dispatch there." },
+  { name: "Jobber", line: "Quotes, visits, and the customer list a reactivation campaign starts from." },
+  { name: "Housecall Pro", line: "Scheduling, memberships, and payments on the system the techs already open." },
+  { name: "Clio", line: "Matters and intake for firms. The AI collects names. A person checks conflicts." },
+  { name: "GoHighLevel", line: "Inbox, pipelines, and texting when you want one place for the conversation." },
+  { name: "Cal.com", line: "The booking page. Visitors pick the event. Your calendar stays the source of truth." },
+  { name: "QuickBooks", line: "Invoices and the customer export. Payment reminders can start when a job is marked complete." },
+  { name: "Stripe", line: "Text-to-pay links and membership billing. You own the Stripe account." },
+  { name: "Google", line: "Business Profile, Calendar, Ads, and Search Console. The accounts stay in your name." },
+];
+---
+
+<Base title={title} description={description}>
+  <PageHero
+    eyebrow="Common systems"
+    title="It works with the software you already pay for."
+    lede="These are the systems owners ask about. A tool is connected only after the discovery call confirms you use it and the integration is in the quote. These are not partnership badges."
+    crumbs={[
+      { href: "/", label: "Home" },
+      { href: "/integrations", label: "Integrations" },
+    ]}
+  >
+    <CtaPair audit />
+  </PageHero>
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Named because owners already use them</h2>
+      </div>
+      <div class="cards">
+      {
+        tools.map((tool) => (
+          <article class="panel">
+            <h3>{tool.name}</h3>
+            <p>{tool.line}</p>
+          </article>
+        ))
+      }
+      </div>
+    </div>
+  </section>
+  <section class="section" style="padding-top: 0">
+    <div class="wrap prose">
+      <p>You do not have to switch CRMs. If there is no system yet, GoHighLevel can be set up as part of the CRM service. You own the accounts either way.</p>
+      <p>Direct booking into a field-service or practice system is $750 to $1,500 to set up and $97 a month, and it is included once in Full Stack.</p>
+    </div>
+  </section>
+  <FinalCta />
+</Base>

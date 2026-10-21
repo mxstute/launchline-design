@@ -258,7 +258,9 @@ a {
 
 .text-link,
 .prose a,
-.crumbs a {
+.crumbs a,
+.plain-list a,
+.service-block h2 a {
   color: #93c5fd;
   text-decoration: underline;
   text-underline-offset: 0.18em;
@@ -287,42 +289,14 @@ a {
 .logo {
   display: inline-flex;
   align-items: center;
-  gap: 0.6rem;
   text-decoration: none;
   color: white;
   min-height: 48px;
 }
 
-.logo-mark {
-  width: 32px;
-  height: 32px;
-  border-radius: 8px;
-  background: #3b82f6;
-  color: white;
-  display: grid;
-  place-items: center;
-  font-weight: 720;
-  font-size: 1.02rem;
-  line-height: 1;
-  box-shadow: 0 0 18px rgb(59 130 246 / 0.45);
-}
-
-.logo-text {
-  font-family: var(--font-serif);
-  font-weight: 560;
-  font-size: 1.22rem;
-  letter-spacing: -0.02em;
-  line-height: 1;
-}
-
-.logo-text span {
-  color: #60a5fa;
-}
-
-.logo-text em {
-  font-style: normal;
-  font-weight: 500;
-  color: #cbd5e1;
+.logo img {
+  height: 40px;
+  width: auto;
 }
 
 .desktop-nav {
@@ -385,6 +359,8 @@ a {
   top: calc(100% + 0.45rem);
   left: 0;
   min-width: 260px;
+  max-height: min(70vh, 26rem);
+  overflow: auto;
   padding: 0.4rem;
   background: #171c2e;
   border: 1px solid var(--line);
@@ -756,6 +732,25 @@ a {
 
 .panel {
   padding: 1.25rem;
+}
+
+.cards .panel h3 {
+  font-family: var(--font-sans);
+  font-size: 1.15rem;
+  font-weight: 680;
+  letter-spacing: 0;
+  line-height: 1.3;
+  margin-bottom: 0.4rem;
+}
+
+.service-block h3 {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 730;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #60a5fa;
+  margin-bottom: 0.55rem;
 }
 
 .loom-grid .panel {
@@ -1490,6 +1485,140 @@ address {
   .ava-features li:nth-child(4),
   .ava-features li:nth-child(5) {
     grid-column: span 1;
+  }
+}
+
+.pillar-strip {
+  border-block: 1px solid var(--line);
+  background: #101422;
+}
+
+.pillar-strip .wrap {
+  display: grid;
+}
+
+.pillar-strip a {
+  display: grid;
+  gap: 0.12rem;
+  text-decoration: none;
+  padding: 0.95rem 1rem;
+  min-height: 44px;
+  border-bottom: 1px solid var(--line);
+}
+
+.pillar-strip a:hover {
+  background: rgb(255 255 255 / 0.04);
+}
+
+.pillar-strip span {
+  color: #60a5fa;
+  font-size: 0.72rem;
+  font-weight: 720;
+  letter-spacing: 0.14em;
+}
+
+.pillar-strip strong {
+  color: white;
+  font-weight: 650;
+}
+
+.pillar-strip small {
+  color: var(--muted);
+}
+
+.service-block {
+  display: grid;
+  gap: 1.1rem;
+}
+
+.service-block h2 {
+  font-size: clamp(1.7rem, 2.4vw, 2.2rem);
+}
+
+.service-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1rem;
+  margin-top: 0.75rem;
+  color: #93c5fd;
+  font-weight: 650;
+}
+
+.calc-grid {
+  display: grid;
+  gap: 0.85rem;
+  margin-top: 1rem;
+}
+
+.calc-out {
+  margin-top: 1rem;
+  font-family: var(--font-serif);
+  font-size: clamp(1.45rem, 2.4vw, 1.9rem);
+  line-height: 1.25;
+  letter-spacing: -0.03em;
+  color: white;
+}
+
+.pair,
+.addon-groups {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.custom-line h3 {
+  margin-bottom: 0.35rem;
+}
+
+.ava-id {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin: 0 0 0.7rem;
+  color: white;
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  letter-spacing: -0.03em;
+}
+
+.ava-id img {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+}
+
+@media (min-width: 760px) {
+  .pillar-strip a {
+    border-bottom: 0;
+    border-right: 1px solid var(--line);
+  }
+
+  .pillar-strip a:last-child {
+    border-right: 0;
+  }
+
+  .pillar-strip .wrap {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .service-block,
+  .pair,
+  .calc-grid,
+  .addon-groups {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .calc-grid {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media (min-width: 980px) {
+  .pillar-strip .wrap {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .cards.wide {
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 

@@ -8,7 +8,7 @@ The site is Astro and Tailwind, fully static, and deploys to Vercel. Instrument 
 
 These are live and linked throughout the site:
 
-- Email: [Myles@launchlinedesign.com](mailto:Myles@launchlinedesign.com)
+- Email: [mxstute@launchlinedesign.com](mailto:mxstute@launchlinedesign.com)
 - Office phone: [(786) 229-4730](tel:+17862294730)
 - Ava, the AI receptionist: [(786) 952-6775](tel:+17869526775)
 
@@ -72,21 +72,17 @@ GitHub Pages on `main` is the previous live site. Deploy this Astro build from t
 ## Pages
 
 - `/` Home
+- `/services` and the four pillars: `/get-more-leads`, `/convert-and-book`, `/keep-customers`, `/operations`
 - `/ai-receptionist`
-- `/automation`
-- `/custom-ai`
-- `/industries/home-services`
-- `/industries/law-firms`
-- `/industries/med-spas`
-- `/industries/dental`
-- `/demo`
-- `/how-it-works`
-- `/pricing`
-- `/about`
-- `/contact`
-- `/privacy`
-- `/terms`
+- `/missed-call-text-back`, `/ai-chat-widget`, `/google-business-profile-optimization-miami`, `/review-automation`, `/customer-reactivation`
+- `/industries/roofing`, `/industries/hvac`, `/industries/pest-control`, `/industries/plumbing`
+- `/industries/home-services`, `/industries/law-firms`, `/industries/med-spas`, `/industries/dental`
+- `/audit`, `/integrations`, `/es`
+- `/demo`, `/how-it-works`, `/pricing`, `/about`, `/contact`
+- `/privacy`, `/terms`
 - `/thanks` (noindex, excluded from the sitemap; form redirect target)
+
+`/automation` redirects to `/keep-customers`. `/custom-ai` redirects to `/operations`. There is no `/results` page.
 
 ## Screenshots
 
@@ -98,4 +94,4 @@ Homepage, after `npm run preview`:
 
 ## Brand
 
-Navy `#0C0F1A`, electric blue `#3B82F6` / `#60A5FA`, mint `#34D399`. Newsreader for headings, Instrument Sans for text. The mark is a blue rounded square with an L, and the wordmark is Launch**line** Design.
+Navy `#0C0F1A`, electric blue `#3B82F6` / `#60A5FA`, mint `#34D399`. Newsreader for headings, Instrument Sans for text. The header and footer use the combination mark (`public/brand/combination-dark.svg`). The favicon, app icon, schema logo, and Ava avatar use the monogram (`public/brand/mark-dark.svg`). The open-graph image is `public/og.png` at 1200×630.

@@ -3,9 +3,19 @@ import { formEndpoint, site } from "../data/site";
 
 interface Props {
   id?: string;
+  note?: string;
+  subject?: string;
+  submitLabel?: string;
+  intent?: string;
 }
 
-const { id = "demo-form" } = Astro.props;
+const {
+  id = "demo-form",
+  note = "Send your website and we’ll record a free 2-minute Loom showing exactly how AI would handle your calls and leads.",
+  subject = "Launchline custom demo request",
+  submitLabel = "Get my custom demo",
+  intent = "demo",
+} = Astro.props;
 const endpoint = formEndpoint();
 const nextUrl = `${site.url}/thanks`;
 const source = Astro.url.pathname;
@@ -22,8 +32,8 @@ const source = Astro.url.pathname;
   <p id={`${id}-note`} class="form-note">
     {
       endpoint
-        ? "Send your website and we’ll record a free 2-minute Loom showing exactly how AI would handle your calls and leads."
-        : "This build is not sending the form. Call the office or email Myles and the Loom request still gets through."
+        ? note
+        : "This build is not sending the form. Call the office or email Myles and the request still gets through."
     }
   </p>
   <div class="form-grid two" style="margin-top: 1rem">
@@ -62,14 +72,15 @@ const source = Astro.url.pathname;
     endpoint && (
       <>
         <input type="hidden" name="_next" value={nextUrl} />
-        <input type="hidden" name="_subject" value="Launchline custom demo request" />
+        <input type="hidden" name="_subject" value={subject} />
       </>
     )
   }
   <input type="hidden" name="source" value={source} />
+  <input type="hidden" name="intent" value={intent} />
   <p class="form-error" data-form-error hidden>That didn’t send. Try again, or email Myles directly.</p>
   <div class="cta-row">
-    <button class="btn btn-primary" type="submit" disabled={!endpoint}>Get my custom demo</button>
+    <button class="btn btn-primary" type="submit" disabled={!endpoint}>{submitLabel}</button>
     <a class="btn btn-ghost" href={`mailto:${site.email}?subject=Custom%20AI%20demo`}>Email Myles</a>
   </div>
 </form>

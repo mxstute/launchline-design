@@ -76,6 +76,13 @@ const { industry } = Astro.props;
       <h2>Which package</h2>
       <p>{industry.fit}</p>
       {industry.note && <p>{industry.note}</p>}
+      {
+        industry.slug === "home-services" && (
+          <p>
+            Trade pages: <a href="/industries/roofing">roofing</a>, <a href="/industries/hvac">HVAC</a>, <a href="/industries/pest-control">pest control</a>, and <a href="/industries/plumbing">plumbing</a>.
+          </p>
+        )
+      }
       <p>
         <a class="text-link" href="/pricing">Pricing, add-ons, and the 14-day Starter pilot</a>
         · <a class="text-link" href="/how-it-works">How a setup actually runs</a>

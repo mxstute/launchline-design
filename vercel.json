@@ -5,6 +5,18 @@
   "outputDirectory": "dist",
   "cleanUrls": true,
   "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/automation",
+      "destination": "/keep-customers",
+      "permanent": true
+    },
+    {
+      "source": "/custom-ai",
+      "destination": "/operations",
+      "permanent": true
+    }
+  ],
   "headers": [
     {
       "source": "/fonts/(.*)",
