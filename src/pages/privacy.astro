@@ -46,7 +46,7 @@ const description =
         We use that to record the Loom and reply. Do not include medical details, Social Security numbers, or other sensitive records in the form.
       </p>
       <p>
-        Until <code>PUBLIC_DEMO_FORM_ENDPOINT</code> is connected, the form does not transmit what you type. The button stays disabled and the page says so. After it is connected, submissions go to that endpoint, which may be a form host or a system Launchline runs. That provider is a processor for the request. The thank-you page, if your form tool redirects there, does not receive the form contents by itself.
+        When the form is connected, it posts to Formspree. Formspree processes the request so Myles can record the Loom and reply. A successful send takes you to the thank-you page, which does not itself receive the form contents. On a build where that inbox is not connected, the form does not transmit what you type, the button stays disabled, and the page says so. Email and the office phone still reach Launchline.
       </p>
 
       <h2>The office line and the AI line</h2>

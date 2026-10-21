@@ -38,16 +38,14 @@ Copy `.env.example` to `.env` for local builds. On Vercel, set the same variable
 
 | Variable | What to put |
 | --- | --- |
-| `PUBLIC_DEMO_FORM_ENDPOINT` | URL that accepts a POST with `name`, `business`, `website`, `email`, `phone`, `notes`, and `source`. Formspree, Getform, or your own endpoint. Point its redirect at `https://www.launchlinedesign.com/thanks`. |
-| `PUBLIC_CAL_LINK` | Cal.com event path only, such as `myles-stute/15min`. Not the full URL. |
+| `PUBLIC_DEMO_FORM_ENDPOINT` | Formspree endpoint, such as `https://formspree.io/f/xxxxxxxx`. The form POSTs `name`, `business`, `website`, `email`, `phone`, `notes`, and `source`, plus `_subject` and a `_gotcha` honeypot. A hidden `_next` is `https://www.launchlinedesign.com/thanks`. With JavaScript, a successful response also goes to `/thanks`. |
+| `PUBLIC_CAL_LINK` | Cal.com event path only, such as `myles-stute/15min`. Not the full URL. When set, the contact page loads the Cal.com inline embed. |
 | `PUBLIC_STREET_ADDRESS` | Optional. Leave blank to show Miami, FL and Miami-Dade only. |
 
-Until the form endpoint is set, the demo form is on the page, the submit button is disabled, and the note says nothing is sent. Email and Ava’s line still work. Until the Cal link is set, the contact page explains that and offers the office phone and email instead of a broken iframe.
+The site builds and runs with none of these set. The demo form stays on the page, the submit button is disabled, and nothing is posted. Email and both phone lines still work. The contact page shows a call-or-email panel instead of a calendar iframe.
 
-Also still open, and marked on the site:
+Also still open:
 
-- A real portrait of Myles. Both photo frames say so. Do not drop in a stock photo.
-- Client proof. The homepage block stays empty until a client approves a named result. Do not add invented quotes, logos, or stats.
 - A sample Loom embed on the homepage and the demo page.
 - A lawyer’s pass on `src/pages/privacy.astro` and `src/pages/terms.astro` before treating them as the signed contract. Recording consent and SMS are flagged in the pages.
 - A blog or guides section was not built. There are no articles yet, and an empty blog would be thin content.
@@ -63,7 +61,9 @@ The discovery call is **15 minutes**, matching the approved service menu (the ea
 5. Deploy. Attach `launchlinedesign.com` and `www.launchlinedesign.com`. Canonical URLs use `https://www.launchlinedesign.com`.
 6. After the first deploy, confirm `/sitemap-index.xml` and `/robots.txt` load, then submit the sitemap in Google Search Console.
 
-No Vercel adapter is required. The site is static HTML. `vercel.json` sets basic security headers and a long cache on the font files.
+No Vercel adapter is required. The site is static HTML. `vercel.json` sets the Astro framework, `npm run build`, output directory `dist`, clean URLs without a trailing slash, basic security headers, and a long cache on the font files.
+
+GitHub Pages on `main` is the previous live site. Deploy this Astro build from the `astro-rebuild` branch, or from Vercel, and do not overwrite `main` until that cutover is intentional.
 
 ## Pages
 

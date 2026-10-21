@@ -52,19 +52,16 @@ const link = calLink();
       });
     </script>
   ) : (
-    <div class="cal-frame" id="book">
-      <p class="slot-kicker">Scheduler placeholder</p>
-      <h3 style="margin: 0.4rem 0 0.6rem">The calendar embed is not connected yet.</h3>
+    <div class="panel cal-fallback">
+      <p class="eyebrow">Book the call</p>
+      <h3>Call or email to pick a time.</h3>
       <p>
-        Book the 15-minute strategy call directly with Myles. Call{" "}
-        <a class="text-link" href={`tel:${site.phoneTel}`}>{site.phoneDisplay}</a>{" "}
-        or email{" "}
-        <a class="text-link" href={`mailto:${site.email}`}>{site.email}</a>.
+        The online calendar is not on this page yet. Myles still takes the 15-minute strategy call directly.
       </p>
-      <p class="dev-note">
-        Set <code>PUBLIC_CAL_LINK</code> to a Cal.com path such as <code>myles-stute/15min</code>, then rebuild.
-        This panel becomes the live embed.
-      </p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href={`tel:${site.phoneTel}`}>Call {site.phoneDisplay}</a>
+        <a class="btn btn-ghost" href={`mailto:${site.email}?subject=15-minute%20strategy%20call`}>Email Myles</a>
+      </div>
     </div>
   )
 }
