@@ -1,0 +1,21 @@
+{
+  "name": "launchline-design",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Launchline Design marketing site. Done-for-you AI for Miami local businesses.",
+  "engines": {
+    "node": ">=22.22.0"
+  },
+  "scripts": {
+    "dev": "astro dev --host 0.0.0.0 --port 4731",
+    "build": "astro build",
+    "preview": "astro preview --host 0.0.0.0 --port 4731",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.7.4",
+    "@tailwindcss/vite": "^4.3.3",
+    "astro": "^7.4.1",
+    "tailwindcss": "^4.3.3"
+  }
+}

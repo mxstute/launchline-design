@@ -1,0 +1,99 @@
+---
+import Base from "../layouts/Base.astro";
+import PageHero from "../components/PageHero.astro";
+import { DEMO_LINE, site } from "../data/site";
+
+const title = "Privacy Policy | Launchline Design";
+const description =
+  "How Launchline Design handles demo requests, call recordings, SMS, and client data. Your accounts and data stay yours.";
+---
+
+<Base title={title} description={description}>
+  <PageHero
+    eyebrow="Legal"
+    title="Privacy policy"
+    lede="How Launchline Design handles what you send this website, and how client systems are set up. Last updated October 21, 2026."
+    crumbs={[
+      { href: "/", label: "Home" },
+      { href: "/privacy", label: "Privacy" },
+    ]}
+  />
+
+  <section class="section" style="padding-top: 0">
+    <div class="wrap prose">
+      <div class="draft-banner">
+        <p>
+          This is the working policy for the site. Have a Florida attorney review the recording and text-message sections before you rely on them. It is not legal advice.
+        </p>
+      </div>
+
+      <h2>Who we are</h2>
+      <p>
+        Launchline Design is operated by {site.founder} in Miami, Florida, serving businesses in Miami-Dade County. Contact <a href={`mailto:${site.email}`}>{site.email}</a> or <a href={`tel:${site.phoneTel}`}>{site.phoneDisplay}</a>.
+      </p>
+
+      <h2>What you can send through this website</h2>
+      <p>The custom-demo form asks for:</p>
+      <ul>
+        <li>Name</li>
+        <li>Business name</li>
+        <li>Website</li>
+        <li>Email</li>
+        <li>Phone</li>
+        <li>Optional notes</li>
+      </ul>
+      <p>
+        We use that to record the Loom and reply. Do not include medical details, Social Security numbers, or other sensitive records in the form.
+      </p>
+      <p>
+        The custom-demo form posts to Formspree. Formspree processes the request so Myles can record the Loom and reply. A successful send takes you to the thank-you page, which does not itself receive the form contents. Email and the office phone still reach Launchline.
+      </p>
+
+      <h2>The office line and the AI line</h2>
+      <p>
+        {site.phoneDisplay} is the office number for {site.founder}. Ava, the AI receptionist, answers on a different number, {DEMO_LINE.display}. Calling her is a product demo. The greeting says you are speaking with an AI and, if the call is recorded, that it is being recorded.
+      </p>
+
+      <h2>Client systems</h2>
+      <p>
+        For paying clients, phone numbers, calendars, inboxes, and CRM records stay in accounts the client owns. Launchline does not take ownership of that data. Phone, SMS, and AI usage fees are billed at cost with no markup. If Launchline opens an account on a client’s behalf, it is in the client’s name unless a written scope says otherwise.
+      </p>
+
+      <h2>Call recording</h2>
+      <p>
+        Florida requires all parties to consent before a private conversation is recorded. Where recording is turned on, the approved script identifies the AI and the recording at the start of the call. Clients are responsible for the consent rules that apply to their business. Launchline will not ship a recording script that skips the disclosure.
+      </p>
+
+      <h2>Text messages</h2>
+      <p>
+        Missed-call text-back replies to someone who just called the business line. Scripts still say who is texting and how to stop. Clients approve every script. TCPA and carrier rules are the client’s obligation as the sender on their own number. This policy does not promise that a particular campaign is compliant.
+      </p>
+
+      <h2>Health, legal, and other sensitive information</h2>
+      <p>
+        Launchline does not claim a blanket HIPAA certification. Dental practices and med spas that would expose protected health information need that written into the proposal, including a business associate agreement if one is required, before go-live. The AI does not diagnose and does not give legal advice. Do not send those details through the public form.
+      </p>
+
+      <h2>Cookies and analytics</h2>
+      <p>
+        This site does not set analytics cookies and does not load an advertising pixel. The Cal.com embed, once connected, is loaded from Cal.com only on the contact page and is covered by Cal.com’s own policy. If analytics are added later, this page will name them before they go live.
+      </p>
+
+      <h2>How long requests are kept</h2>
+      <p>
+        Demo requests are kept long enough to record the Loom and follow up, then deleted or archived with the email thread. Client call audio and transcripts, when a client has asked for them, follow the retention written in that client’s scope. They are not used to train a public model.
+      </p>
+
+      <h2>Children</h2>
+      <p>The site and the services are for businesses. They are not directed at children.</p>
+
+      <h2>Changes</h2>
+      <p>If this policy changes, the date at the top of the page changes with it.</p>
+
+      <h2>Contact</h2>
+      <p>
+        Privacy questions: <a href={`mailto:${site.email}`}>{site.email}</a> or <a href={`tel:${site.phoneTel}`}>{site.phoneDisplay}</a>. Miami, Florida.
+      </p>
+    </div>
+  </section>
+</Base>

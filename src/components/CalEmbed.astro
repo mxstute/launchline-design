@@ -1,0 +1,68 @@
+---
+import { calLink, site } from "../data/site";
+
+const link = calLink();
+---
+
+{
+  link ? (
+    <div class="cal-live" id="cal-embed" />
+    <script is:inline define:vars={{ link }}>
+      (function (C, A, L) {
+        var p = function (a, ar) {
+          a.q.push(ar);
+        };
+        var d = C.document;
+        C.Cal =
+          C.Cal ||
+          function () {
+            var cal = C.Cal;
+            var ar = arguments;
+            if (!cal.loaded) {
+              cal.ns = {};
+              cal.q = cal.q || [];
+              d.head.appendChild(d.createElement("script")).src = A;
+              cal.loaded = true;
+            }
+            if (ar[0] === L) {
+              var api = function () {
+                p(api, arguments);
+              };
+              var namespace = ar[1];
+              api.q = api.q || [];
+              if (typeof namespace === "string") {
+                cal.ns[namespace] = cal.ns[namespace] || api;
+                p(cal.ns[namespace], ar);
+                p(cal, ["initNamespace", namespace]);
+              } else p(cal, ar);
+              return;
+            }
+            p(cal, ar);
+          };
+      })(window, "https://app.cal.com/embed/embed.js", "init");
+      Cal("init", "launchline", { origin: "https://cal.com" });
+      var isEvent = link.indexOf("/") !== -1;
+      var inline = {
+        elementOrSelector: "#cal-embed",
+        calLink: link,
+      };
+      if (isEvent) inline.config = { layout: "month_view" };
+      Cal.ns.launchline("inline", inline);
+      var ui = { styles: { branding: { brandColor: "#2563EB" } } };
+      if (isEvent) ui.layout = "month_view";
+      Cal.ns.launchline("ui", ui);
+    </script>
+  ) : (
+    <div class="panel cal-fallback">
+      <p class="eyebrow">Book the call</p>
+      <h3>Call or email to pick a time.</h3>
+      <p>
+        The online calendar is not on this page yet. Myles still takes the 15-minute strategy call directly.
+      </p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href={`tel:${site.phoneTel}`}>Call {site.phoneDisplay}</a>
+        <a class="btn btn-ghost" href={`mailto:${site.email}?subject=15-minute%20strategy%20call`}>Email Myles</a>
+      </div>
+    </div>
+  )
+}

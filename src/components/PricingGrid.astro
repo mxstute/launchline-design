@@ -1,0 +1,120 @@
+---
+import {
+  addonGroups,
+  auditOffer,
+  customBuild,
+  fullStackExcludes,
+  fullStackMath,
+  pilot,
+  pricingNotes,
+  tiers,
+} from "../data/pricing";
+
+interface Props {
+  showAddons?: boolean;
+}
+
+const { showAddons = true } = Astro.props;
+---
+
+<div class="tiers">
+  {
+    tiers.map((tier) => (
+      <article class:list={["tier", tier.featured && "featured"]}>
+        {tier.featured && <p class="badge">Most popular</p>}
+        <p class="tier-step">{tier.step}</p>
+        <h3 style="margin-top: 0.3rem">{tier.name}</h3>
+        <p>{tier.pitch}</p>
+        <div class="price-row">
+          <p>
+            <span>Setup</span>
+            <strong class="amt">{tier.setup}</strong>
+          </p>
+          <p>
+            <span>Monthly</span>
+            <strong class="amt">{tier.monthly}</strong>
+          </p>
+        </div>
+        <ul class="ticks">
+          {tier.items.map((item) => (
+            <li class:list={[item.lead && "lead"]}>
+              <svg viewBox="0 0 16 16" aria-hidden="true">
+                {item.lead ? (
+                  <path fill="currentColor" d="M7.2 3h1.6v4.2H13v1.6H8.8V13H7.2V8.8H3V7.2h4.2V3z" />
+                ) : (
+                  <path fill="none" stroke="currentColor" stroke-width="1.8" d="M3 8.2 6.2 11.5 13 4.5" />
+                )}
+              </svg>
+              <span>{item.text}</span>
+            </li>
+          ))}
+        </ul>
+        <div class="fit">
+          <p>
+            <strong style="color: white">Best for: </strong>
+            {tier.fit}
+          </p>
+          <p class="small" style="margin-top: 0.45rem">{tier.launch}</p>
+        </div>
+      </article>
+    ))
+  }
+</div>
+
+<p class="small" style="margin-top: 1rem; max-width: 70ch">{fullStackMath}</p>
+<p class="small" style="max-width: 70ch">{fullStackExcludes}</p>
+
+<section class="panel custom-line" id="custom" style="margin-top: 1rem">
+  <p class="tier-step">Scoped projects</p>
+  <h3 style="margin-top: 0.3rem">{customBuild.name}</h3>
+  <p class="service-meta"><span>{customBuild.price}</span></p>
+  <p>{customBuild.text}</p>
+  <p><a class="text-link" href="/operations#custom-ai">What a custom build covers</a></p>
+</section>
+
+{
+  showAddons && (
+    <>
+      <div class="pair" style="margin-top: 1rem">
+        <section class="pilot">
+          <p class="slot-kicker">{pilot.kicker}</p>
+          <h3>{pilot.title}</h3>
+          <p>{pilot.text}</p>
+        </section>
+        <section class="panel">
+          <p class="slot-kicker">{auditOffer.kicker}</p>
+          <h3>{auditOffer.title}</h3>
+          <p class="service-meta"><span>{auditOffer.price}</span></p>
+          <p>{auditOffer.text}</p>
+          <p><a class="text-link" href={auditOffer.href}>Book the audit</a></p>
+        </section>
+      </div>
+      <section aria-labelledby="addons-heading" style="margin-top: 1.5rem">
+        <p class="eyebrow" id="addons-heading">Add-ons by pillar</p>
+        <p class="small" style="margin-bottom: 0.8rem">Starting prices. Setup and monthly unless noted.</p>
+        <div class="addon-groups">
+          {addonGroups.map((group) => (
+            <section class="panel">
+              <h3>{group.name}</h3>
+              <ul class="addon-list">
+                {group.items.map((addon) => (
+                  <li>
+                    <div>
+                      <strong>{addon.name}</strong>
+                      <span class="small">{addon.detail}</span>
+                    </div>
+                    <span class="addon-price">{addon.price}</span>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ))}
+        </div>
+      </section>
+    </>
+  )
+}
+
+<ul class="plain-list small" style="margin-top: 1rem">
+  {pricingNotes.map((note) => <li>{note}</li>)}
+</ul>

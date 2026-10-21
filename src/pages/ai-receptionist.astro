@@ -1,0 +1,92 @@
+---
+import AvaSection from "../components/AvaSection.astro";
+import Base from "../layouts/Base.astro";
+import CallExample from "../components/CallExample.astro";
+import CtaPair from "../components/CtaPair.astro";
+import FinalCta from "../components/FinalCta.astro";
+import PageHero from "../components/PageHero.astro";
+
+const title = "AI Receptionist for Miami Businesses | Launchline Design";
+const description =
+  "A 24/7 AI voice and text receptionist that answers, qualifies, and books for Miami businesses. Website chat, human handoff, and scripts you approve.";
+---
+
+<Base title={title} description={description}>
+  <PageHero
+    eyebrow="Growth package"
+    title="A receptionist that picks up when your team cannot."
+    lede="Answers every call and text 24/7, qualifies, and books. After-hours, overflow, or every call. You approve the script before a customer hears it."
+    crumbs={[
+      { href: "/", label: "Home" },
+      { href: "/ai-receptionist", label: "AI Receptionist" },
+    ]}
+  >
+    <CtaPair loomHref="/demo#custom-demo" />
+  </PageHero>
+
+  <AvaSection />
+
+  <section class="section">
+    <div class="wrap split">
+      <div class="stack">
+        <h2>Voice, text, and the chat on your site.</h2>
+        <p>
+          Growth is the receptionist package: $1,497 to set up and $497 a month. It includes everything in Starter, then adds a voice receptionist, website chat trained on your services, FAQs, and pricing, booking into your calendar, transfer and urgent alerts, call summaries, and a monthly pass on the script.
+        </p>
+        <p>
+          Missed-call text-back still runs on the business line you already use. You do not give up your number. An extra line is $147 a month if you want the AI on its own.
+        </p>
+        <p>
+          The voice is one you hear first, on the demo line or in the Loom we record on your site. If it sounds wrong for the office, it changes before launch.
+        </p>
+      </div>
+      <CallExample />
+    </div>
+  </section>
+
+  <section class="section" style="padding-top: 0">
+    <div class="wrap handle-grid">
+      <article>
+        <h3>It handles</h3>
+        <ul class="plain-list">
+          <li>After-hours, overflow, or all inbound calls</li>
+          <li>Qualifying questions you write: location, urgency, service type</li>
+          <li>Booking onto the calendar you already use</li>
+          <li>A text confirmation and the missed-call thread</li>
+          <li>Website chat that stays inside approved answers</li>
+          <li>A summary your team can read without replaying the call</li>
+        </ul>
+      </article>
+      <article>
+        <h3>A person handles</h3>
+        <ul class="plain-list">
+          <li>Anything the script does not explicitly allow</li>
+          <li>Legal advice, clinical questions, and diagnosis</li>
+          <li>Angry callers and complaints</li>
+          <li>True emergencies: the caller is pointed to emergency services and you are alerted</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top: 0">
+    <div class="wrap prose">
+      <h2>Where it fits in Miami</h2>
+      <p>
+        Med spas, dental offices, law firms, and service companies with a steady ring are the offices Growth was priced for. Home-service crews who mainly need the missed call caught often start on <a href="/missed-call-text-back">missed-call text-back</a> and add the voice when the phone justifies it.
+      </p>
+      <p>
+        Spanish is not included on Starter or Growth by default. Bilingual English and Spanish is an add-on at $297 to set up and $97 a month. Full Stack includes bilingual voice, chat, and text.
+      </p>
+      <p>
+        Phone, SMS, and AI usage are billed at cost with no markup. The accounts, the number, and the customer data stay yours.
+      </p>
+      <p>
+        <a class="text-link" href="/convert-and-book">Where the receptionist sits in Convert & Book</a>
+        {" · "}
+        <a class="text-link" href="/pricing">Starter, Growth, and Full Stack</a>
+      </p>
+    </div>
+  </section>
+  <FinalCta />
+</Base>

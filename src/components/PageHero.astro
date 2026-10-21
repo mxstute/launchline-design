@@ -1,0 +1,53 @@
+---
+import { jsonLdScript, site } from "../data/site";
+
+interface Crumb {
+  href: string;
+  label: string;
+}
+
+interface Props {
+  eyebrow: string;
+  title: string;
+  lede: string;
+  crumbs: Crumb[];
+}
+
+const { eyebrow, title, lede, crumbs } = Astro.props;
+const breadcrumb = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: crumbs.map((crumb, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    name: crumb.label,
+    item: new URL(crumb.href, site.url).href,
+  })),
+};
+---
+
+<section class="page-hero">
+  <div class="wrap">
+    <nav aria-label="Breadcrumb">
+      <ol class="crumbs">
+        {
+          crumbs.map((crumb, index) => (
+            <li>
+              {index > 0 && <span aria-hidden="true"> / </span>}
+              {index === crumbs.length - 1 ? (
+                <span aria-current="page">{crumb.label}</span>
+              ) : (
+                <a href={crumb.href}>{crumb.label}</a>
+              )}
+            </li>
+          ))
+        }
+      </ol>
+    </nav>
+    <p class="eyebrow">{eyebrow}</p>
+    <h1>{title}</h1>
+    <p class="lede">{lede}</p>
+    <slot />
+  </div>
+</section>
+<script type="application/ld+json" is:inline set:html={jsonLdScript(breadcrumb)} />

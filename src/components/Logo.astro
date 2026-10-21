@@ -1,0 +1,11 @@
+---
+interface Props {
+  href?: string;
+}
+
+const { href = "/" } = Astro.props;
+---
+
+<a class="logo" href={href}>
+  <img src="/brand/combination-dark.svg" alt="Launchline Design" width="168" height="45" />
+</a>

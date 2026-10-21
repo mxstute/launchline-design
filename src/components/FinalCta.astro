@@ -1,0 +1,17 @@
+---
+import CtaPair from "./CtaPair.astro";
+import { site } from "../data/site";
+---
+
+<section class="final" aria-labelledby="final-heading">
+  <p class="eyebrow">Miami</p>
+  <h2 id="final-heading">Stop missing leads this week.</h2>
+  <p class="lede">Starter is $497 to set up and $197 a month. Growth, the package most offices choose, is $1,497 and $497 a month. Full Stack, the whole journey, is $4,997 and $1,497 a month.</p>
+  <CtaPair />
+  <p class="small" style="margin-top: 1rem">
+    Or call the office, not the AI line:
+    <a class="text-link" href={`tel:${site.phoneTel}`}>{site.phoneDisplay}</a>
+    ·
+    <a class="text-link" href={`mailto:${site.email}`}>{site.email}</a>
+  </p>
+</section>

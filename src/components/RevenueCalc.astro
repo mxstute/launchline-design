@@ -1,0 +1,60 @@
+<section class="panel calc" aria-labelledby="calc-heading">
+  <p class="eyebrow" id="calc-heading">Missed-revenue estimate</p>
+  <h2>Use your own calls, close rate, and ticket.</h2>
+  <p>
+    Missed calls per week, times the share you would have booked, times the average job. Nothing here is a promised result.
+  </p>
+  <form class="calc-grid" data-revenue-calc>
+    <label>
+      Missed calls per week
+      <input name="calls" type="number" inputmode="decimal" min="0" step="1" placeholder="8" />
+    </label>
+    <label>
+      Close rate (%)
+      <input name="close" type="number" inputmode="decimal" min="0" max="100" step="1" placeholder="30" />
+    </label>
+    <label>
+      Average ticket ($)
+      <input name="ticket" type="number" inputmode="decimal" min="0" step="1" placeholder="450" />
+    </label>
+  </form>
+  <p class="calc-out" data-revenue-out>Enter your three numbers to see the estimate.</p>
+  <p class="small">Your numbers only. Launchline does not publish a typical missed-revenue figure.</p>
+</section>
+
+<script>
+  const root = document.querySelector<HTMLElement>("[data-revenue-calc]");
+  const out = document.querySelector<HTMLElement>("[data-revenue-out]");
+
+  function money(value: number): string {
+    return new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "USD",
+      maximumFractionDigits: 0,
+    }).format(value);
+  }
+
+  function read(form: HTMLFormElement, name: string): number | null {
+    const field = form.elements.namedItem(name);
+    if (!(field instanceof HTMLInputElement) || field.value.trim() === "") return null;
+    const value = Number(field.value);
+    if (!Number.isFinite(value) || value < 0) return null;
+    return value;
+  }
+
+  function render(): void {
+    if (!(root instanceof HTMLFormElement) || !out) return;
+    const calls = read(root, "calls");
+    const close = read(root, "close");
+    const ticket = read(root, "ticket");
+    if (calls === null || close === null || ticket === null || close > 100) {
+      out.textContent = "Enter your three numbers to see the estimate.";
+      return;
+    }
+    const weekly = calls * (close / 100) * ticket;
+    const monthly = weekly * (52 / 12);
+    out.textContent = `${money(weekly)} a week · ${money(monthly)} a month, if those missed calls would have closed at that rate.`;
+  }
+
+  root?.addEventListener("input", render);
+</script>

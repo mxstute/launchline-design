@@ -1,0 +1,22 @@
+---
+import Base from "../layouts/Base.astro";
+
+const title = "Page not found | Launchline Design";
+const description = "That page is not on the Launchline Design site. Go back to the homepage, pricing, or contact.";
+---
+
+<Base title={title} description={description} noindex>
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="eyebrow">404</p>
+      <h1>This page is not on the site.</h1>
+      <p class="lede">The link may be old. The current pages are below.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="/">Home</a>
+        <a class="btn btn-ghost" href="/pricing">Pricing</a>
+        <a class="btn btn-ghost" href="/contact">Contact</a>
+        <a class="btn btn-ghost" href="/demo">Demo</a>
+      </div>
+    </div>
+  </section>
+</Base>

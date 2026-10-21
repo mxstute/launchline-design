@@ -1,0 +1,90 @@
+---
+import Base from "../layouts/Base.astro";
+import FinalCta from "../components/FinalCta.astro";
+import { DEMO_LINE, site } from "../data/site";
+
+const title = "IA para negocios en Miami | Launchline Design";
+const description =
+  "IA lista para usar en Miami: contesta, agenda y da seguimiento en inglés y en español. Starter, Growth y Full Stack. Llame a Ava al (786) 952-6775.";
+
+const alternates = [
+  { hreflang: "es", href: `${site.url}/es` },
+  { hreflang: "en", href: `${site.url}/` },
+  { hreflang: "x-default", href: `${site.url}/` },
+];
+---
+
+<Base title={title} description={description} lang="es" alternates={alternates}>
+  <section class="hero">
+    <div class="wrap">
+      <p class="eyebrow">Miami · Inglés y español</p>
+      <h1>IA que contesta, agenda y da seguimiento, para que su negocio no pierda el cliente.</h1>
+      <p class="lede">
+        Launchline instala la recepcionista, los mensajes de llamada perdida y el seguimiento para negocios locales en Miami. Usted aprueba cada guion. Las cuentas, los números y los datos siguen siendo suyos.
+      </p>
+      <div class="cta-row">
+        <a class="btn btn-mint" href={DEMO_LINE.href}>Llamar a Ava · {DEMO_LINE.display}</a>
+        <a class="btn btn-ghost" href="/audit">Pedir la auditoría</a>
+        <a class="btn btn-primary" href="/contact">Hablar con Myles</a>
+      </div>
+      <ul class="hero-points">
+        <li>Prueba gratis de 14 días en Starter</li>
+        <li>En marcha en tan solo 7 días</li>
+        <li>El uso se cobra al costo, sin recargo</li>
+        <li>El bilingüe entra en Full Stack</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Cuatro pilares</p>
+        <h2>Del primer anuncio a la factura pagada.</h2>
+      </div>
+      <div class="cards quarters">
+        <a class="solution" href="/get-more-leads">
+          <span class="idx">01</span>
+          <h3>Más clientes</h3>
+          <p>Llamada perdida, Google, anuncios y chat. El detalle está en inglés.</p>
+        </a>
+        <a class="solution" href="/convert-and-book">
+          <span class="idx">02</span>
+          <h3>Contestar y agendar</h3>
+          <p>Recepcionista 24/7, calificación y cita en su calendario.</p>
+        </a>
+        <a class="solution" href="/keep-customers">
+          <span class="idx">03</span>
+          <h3>Conservar y crecer</h3>
+          <p>Reseñas, reactivación y referidos. Sin textos a quien no dio permiso.</p>
+        </a>
+        <a class="solution" href="/operations">
+          <span class="idx">04</span>
+          <h3>Operación</h3>
+          <p>CRM, reportes, cobros y proyectos a la medida.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top: 0">
+    <div class="wrap prose">
+      <h2>Precios de partida</h2>
+      <ul>
+        <li>Starter: $497 de instalación y $197 al mes. Texto por llamada perdida y reseñas.</li>
+        <li>Growth: $1,497 y $497 al mes. Recepcionista de voz, chat y agenda. El más pedido.</li>
+        <li>Full Stack: $4,997 y $1,497 al mes. Incluye voz, chat y texto en inglés y español.</li>
+        <li>Sistemas a la medida: desde $3,500 y desde $997 al mes.</li>
+        <li>Auditoría de ingresos perdidos: $297, acreditados a la instalación si empieza en 30 días.</li>
+      </ul>
+      <p>
+        En Starter o Growth, el bilingüe es un complemento de $297 de instalación y $97 al mes. Ava contesta la demo en <a href={DEMO_LINE.href}>{DEMO_LINE.display}</a>. Puede pedirle que hable como su negocio, en inglés o en español.
+      </p>
+      <p>
+        Los textos de marketing solo salen si la persona dio consentimiento por escrito. Quien no lo dio recibe correo. Es orientación general, no asesoría legal. La oficina es <a href={`tel:${site.phoneTel}`}>{site.phoneDisplay}</a> y <a href={`mailto:${site.email}`}>{site.email}</a>.
+      </p>
+      <p><a class="text-link" href="/">Read this site in English</a></p>
+    </div>
+  </section>
+  <FinalCta />
+</Base>

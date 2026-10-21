@@ -1,0 +1,125 @@
+---
+import { formEndpoint, site } from "../data/site";
+
+interface Props {
+  id?: string;
+  note?: string;
+  subject?: string;
+  submitLabel?: string;
+  intent?: string;
+}
+
+const {
+  id = "demo-form",
+  note = "Send your website and we’ll record a free 2-minute Loom showing exactly how AI would handle your calls and leads.",
+  subject = "Launchline custom demo request",
+  submitLabel = "Get my custom demo",
+  intent = "demo",
+} = Astro.props;
+const endpoint = formEndpoint();
+const nextUrl = `${site.url}/thanks`;
+const source = Astro.url.pathname;
+---
+
+<form
+  id={id}
+  class="panel"
+  data-demo-form
+  method="post"
+  action={endpoint ?? undefined}
+  aria-describedby={`${id}-note`}
+>
+  <p id={`${id}-note`} class="form-note">
+    {
+      endpoint
+        ? note
+        : "This build is not sending the form. Call the office or email Myles and the request still gets through."
+    }
+  </p>
+  <div class="form-grid two" style="margin-top: 1rem">
+    <label>
+      Name
+      <input name="name" type="text" autocomplete="name" required placeholder="Your name" />
+    </label>
+    <label>
+      Business
+      <input name="business" type="text" autocomplete="organization" required placeholder="Business name" />
+    </label>
+    <label>
+      Website
+      <input name="website" type="text" autocomplete="url" required placeholder="yoursite.com or “no website”" />
+    </label>
+    <label>
+      Email
+      <input name="email" type="email" autocomplete="email" required placeholder="you@company.com" />
+    </label>
+    <label>
+      Phone
+      <input name="phone" type="tel" autocomplete="tel" required placeholder="(305) 555-0100" />
+    </label>
+    <label class="span-2">
+      Notes <span class="muted">optional</span>
+      <textarea name="notes" rows="4" placeholder="Hours, what the AI should handle, anything the Loom should show."></textarea>
+    </label>
+  </div>
+  <div class="hp" aria-hidden="true">
+    <label>
+      Leave this blank
+      <input name="_gotcha" type="text" tabindex="-1" autocomplete="off" />
+    </label>
+  </div>
+  {
+    endpoint && (
+      <>
+        <input type="hidden" name="_next" value={nextUrl} />
+        <input type="hidden" name="_subject" value={subject} />
+      </>
+    )
+  }
+  <input type="hidden" name="source" value={source} />
+  <input type="hidden" name="intent" value={intent} />
+  <p class="form-error" data-form-error hidden>That didn’t send. Try again, or email Myles directly.</p>
+  <div class="cta-row">
+    <button class="btn btn-primary" type="submit" disabled={!endpoint}>{submitLabel}</button>
+    <a class="btn btn-ghost" href={`mailto:${site.email}?subject=Custom%20AI%20demo`}>Email Myles</a>
+  </div>
+</form>
+
+<script>
+  document.querySelectorAll<HTMLFormElement>("form[data-demo-form]").forEach((form) => {
+    form.addEventListener("submit", async (event) => {
+      const action = form.getAttribute("action");
+      if (!action) {
+        event.preventDefault();
+        return;
+      }
+
+      event.preventDefault();
+      const button = form.querySelector<HTMLButtonElement>("button[type='submit']");
+      const error = form.querySelector<HTMLElement>("[data-form-error]");
+      if (error) error.hidden = true;
+      if (button) button.disabled = true;
+
+      try {
+        const response = await fetch(action, {
+          method: "POST",
+          body: new FormData(form),
+          headers: { Accept: "application/json" },
+        });
+        if (response.ok) {
+          const payload = (await response.json().catch(() => null)) as { ok?: boolean } | null;
+          if (!payload || payload.ok !== false) {
+            window.location.assign("/thanks");
+            return;
+          }
+        }
+      } catch {
+        form.submit();
+        return;
+      }
+
+      if (button) button.disabled = false;
+      if (error) error.hidden = false;
+    });
+  });
+</script>

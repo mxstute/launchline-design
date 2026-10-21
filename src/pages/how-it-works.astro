@@ -1,0 +1,94 @@
+---
+import Base from "../layouts/Base.astro";
+import CtaPair from "../components/CtaPair.astro";
+import FinalCta from "../components/FinalCta.astro";
+import PageHero from "../components/PageHero.astro";
+
+const title = "How Launchline Sets Up Your AI | Launchline Design";
+const description =
+  "From a free 2-minute Loom to a live system in as little as 7 days. You approve every script. A free 14-day Starter pilot is available.";
+---
+
+<Base title={title} description={description}>
+  <PageHero
+    eyebrow="Setup"
+    title="Live in as little as 7 days. You approve every script."
+    lede="Discovery call, a build around the tools you already use, a test on your real calls, then launch and a monthly tune. The front door is a free Loom on your website."
+    crumbs={[
+      { href: "/", label: "Home" },
+      { href: "/how-it-works", label: "How it works" },
+    ]}
+  >
+    <CtaPair loomHref="/demo#custom-demo" />
+  </PageHero>
+
+  <section class="section">
+    <div class="wrap">
+      <ol class="steps four">
+        <li class="step">
+          <span class="step-num">1</span>
+          <div>
+            <h3>Free demo</h3>
+            <p>Send your site. We record a 2-minute Loom of how AI would handle your calls and leads. That is the personalized demo, before any package.</p>
+          </div>
+        </li>
+        <li class="step">
+          <span class="step-num">2</span>
+          <div>
+            <h3>Discovery call</h3>
+            <p>Fifteen minutes with Myles. We pick a package and map your calls: who answers today, what is urgent, and what the AI must never say.</p>
+          </div>
+        </li>
+        <li class="step">
+          <span class="step-num">3</span>
+          <div>
+            <h3>Build, then test on your real calls</h3>
+            <p>Scripts in your voice, connected to your calendar. You hear it before customers do. Starter can run as a free 14-day pilot on your line.</p>
+          </div>
+        </li>
+        <li class="step">
+          <span class="step-num">4</span>
+          <div>
+            <h3>Launch and tune monthly</h3>
+            <p>Many Starter and Growth setups go live in as little as 7 days. After that, a monthly check-in. Growth adds call summaries and script optimization.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top: 0">
+    <div class="wrap two-col">
+      <article class="panel">
+        <h2>What we need from you</h2>
+        <ul class="plain-list" style="margin-top: 0.8rem">
+          <li>The business line the AI should watch or answer</li>
+          <li>The calendar appointments should land on</li>
+          <li>Who gets an urgent alert, and how</li>
+          <li>Services, hours, and any prices the AI is allowed to say</li>
+          <li>The list of things it must hand to a person</li>
+        </ul>
+      </article>
+      <article class="pilot">
+        <p class="slot-kicker">Free 14-day Starter pilot</p>
+        <h2>Keep it only if it is catching calls.</h2>
+        <p style="margin-top: 0.6rem">
+          We set up Starter on your line at no cost. If it is not catching calls you would have missed, you do not keep it. The pilot is Starter: text-back, review requests, and the shared inbox. The voice receptionist is Growth.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top: 0">
+    <div class="wrap prose">
+      <h2>What “as little as 7 days” does and does not mean</h2>
+      <p>
+        It is a real timeline for many Starter and Growth setups once the script is approved and the calendar access is in place. Full Stack puts the receptionist, text-back, and speed-to-lead live in about 2 weeks, and the rest of the system over 4 to 6 weeks. It is not a promise for every scope. Custom AI is quoted in a written proposal, and that proposal carries the timeline. Business texting also waits on carrier registration, often 1 to 3 weeks, and that registration starts on day one.
+      </p>
+      <p>
+        Phone, SMS, and AI usage are billed at cost with no markup. Your accounts, numbers, and data stay yours. Questions on recording consent, HIPAA scope, and handoff are on the <a href="/#faq">homepage FAQ</a>.
+      </p>
+    </div>
+  </section>
+  <FinalCta />
+</Base>

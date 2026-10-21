@@ -1,0 +1,105 @@
+---
+import Base from "../layouts/Base.astro";
+import PageHero from "../components/PageHero.astro";
+import { site } from "../data/site";
+
+const title = "Terms of Service | Launchline Design";
+const description =
+  "Terms for Launchline Design AI receptionist, automation, and custom AI work, including the free 14-day Starter pilot and usage billed at cost.";
+---
+
+<Base title={title} description={description}>
+  <PageHero
+    eyebrow="Legal"
+    title="Terms of service"
+    lede="The commercial terms for Starter, Growth, Full Stack, Custom, the $297 audit, and the free 14-day Starter pilot. Last updated October 21, 2026."
+    crumbs={[
+      { href: "/", label: "Home" },
+      { href: "/terms", label: "Terms" },
+    ]}
+  />
+
+  <section class="section" style="padding-top: 0">
+    <div class="wrap prose">
+      <div class="draft-banner">
+        <p>
+          These terms are a working draft so the site is not silent on price, the pilot, recording, and data. Have a Florida attorney revise them before you treat them as the contract you sign. A written quote or statement of work controls if it conflicts with this page.
+        </p>
+      </div>
+
+      <h2>Who you are contracting with</h2>
+      <p>
+        Launchline Design, Miami, Florida, operated by {site.founder}. Contact <a href={`mailto:${site.email}`}>{site.email}</a> or <a href={`tel:${site.phoneTel}`}>{site.phoneDisplay}</a>.
+      </p>
+
+      <h2>Services</h2>
+      <p>
+        Launchline sets up AI receptionists, missed-call text-back, review and follow-up automation, and custom AI systems. The package on the <a href="/pricing">pricing page</a> is the menu. The quote confirmed on the call is what you are buying.
+      </p>
+
+      <h2>Prices</h2>
+      <p>Published starting points, in US dollars:</p>
+      <ul>
+        <li>Starter: $497 setup and $197 per month</li>
+        <li>Growth: $1,497 setup and $497 per month</li>
+        <li>Full Stack: $4,997 setup and $1,497 per month</li>
+        <li>Custom AI systems: from $3,500 setup and from $997 per month</li>
+        <li>AI Missed-Revenue Audit: $297, credited toward setup if you start within 30 days</li>
+      </ul>
+      <p>
+        Add-on prices on the pricing page are part of the same menu. Prices are starting points. The final quote is confirmed on the call. Phone, SMS, and AI usage fees are billed at cost with no markup.
+      </p>
+
+      <h2>Free 14-day Starter pilot</h2>
+      <p>
+        Launchline can set up Starter on your business line at no cost for 14 days. You keep it only if it is catching calls you would have missed. If you do not want to continue, say so before the pilot ends and you are not billed the Starter setup or the monthly fee. The pilot is Starter, not the voice receptionist.
+      </p>
+
+      <h2>Timing</h2>
+      <p>
+        Many Starter and Growth setups go live in as little as 7 days after you approve every script and provide calendar and line access. Full Stack puts the receptionist, text-back, and speed-to-lead live in about 2 weeks, and the rest of the system over 4 to 6 weeks. That is not a guarantee for every office, and it does not apply to Custom unless the proposal says so. Business texting also waits on carrier registration, often 1 to 3 weeks. Nothing answers real customers until you approve the script.
+      </p>
+
+      <h2>Your accounts and data</h2>
+      <p>
+        Your accounts, phone numbers, and customer data stay yours. You own the scripts written for your business. Launchline owns its pre-existing methods and this website. A custom statement of work can assign something more specific, and that document wins if they differ.
+      </p>
+
+      <h2>What you are responsible for</h2>
+      <ul>
+        <li>The truth of the prices, services, and hours you ask the AI to say</li>
+        <li>Consent rules for recording and for text messages on your number, including Florida all-party consent and the TCPA</li>
+        <li>Telling us what the AI must hand to a person, including emergencies, legal questions, and clinical questions</li>
+        <li>Not sending protected health information through the public website form</li>
+      </ul>
+
+      <h2>No promised results</h2>
+      <p>
+        Launchline does not promise a number of booked jobs, a star rating, a revenue figure, or a search ranking. The site does not publish testimonials or metrics a client has not approved.
+      </p>
+
+      <h2>Acceptable use</h2>
+      <p>
+        You will not ask Launchline to build a system that deceives callers about being a person when the script should say it is AI, that impersonates someone else, or that is used for unlawful outreach.
+      </p>
+
+      <h2>Monthly service</h2>
+      <p>
+        Monthly service continues until you tell us to stop. How the final month is billed is written on the quote. This page does not invent a notice period the quote does not contain.
+      </p>
+
+      <h2>Disclaimers and liability</h2>
+      <p>
+        The AI can misunderstand a caller. Human handoff is part of the design because of that. Launchline is not your lawyer, your clinician, or your insurer. To the extent the law allows, Launchline’s liability for a paid engagement is limited to the fees you paid Launchline for that engagement in the three months before the claim. This limit does not apply where the law does not allow it.
+      </p>
+
+      <h2>Law</h2>
+      <p>These terms are governed by the laws of the State of Florida, without regard to conflict-of-law rules.</p>
+
+      <h2>Contact</h2>
+      <p>
+        <a href={`mailto:${site.email}`}>{site.email}</a> · <a href={`tel:${site.phoneTel}`}>{site.phoneDisplay}</a> · Miami, Florida.
+      </p>
+    </div>
+  </section>
+</Base>
