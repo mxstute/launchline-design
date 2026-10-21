@@ -1,0 +1,50 @@
+---
+import Logo from "./Logo.astro";
+import { DEMO_LINE, nav, site, streetAddress } from "../data/site";
+
+const street = streetAddress();
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div>
+      <Logo />
+      <p style="margin-top: 0.9rem; max-width: 28ch">
+        Done-for-you AI for Miami local businesses. You work directly with the engineer.
+      </p>
+      <address style="margin-top: 1rem">
+        <span>{site.name}</span>
+        {street && <span>{street}</span>}
+        <span>Miami, Florida</span>
+        <span>Serving {site.serviceArea}</span>
+        <a href={`mailto:${site.email}`}>{site.email}</a>
+        <a href={`tel:${site.phoneTel}`}>Office {site.phoneDisplay}</a>
+        <a href={DEMO_LINE.href}>Ava, AI receptionist {DEMO_LINE.display}</a>
+      </address>
+    </div>
+    <div>
+      <p class="footer-label">Solutions</p>
+      <div class="footer-links">
+        {nav.solutions.map((item) => <a href={item.href}>{item.label}</a>)}
+      </div>
+    </div>
+    <div>
+      <p class="footer-label">Industries</p>
+      <div class="footer-links">
+        {nav.industries.map((item) => <a href={item.href}>{item.label}</a>)}
+      </div>
+    </div>
+    <div>
+      <p class="footer-label">Company</p>
+      <div class="footer-links">
+        {nav.company.map((item) => <a href={item.href}>{item.label}</a>)}
+        {nav.legal.map((item) => <a href={item.href}>{item.label}</a>)}
+      </div>
+    </div>
+  </div>
+  <div class="wrap legal-bar">
+    <p>© {year} {site.name}. Miami, Florida.</p>
+    <p>Office {site.phoneDisplay} · Ava {DEMO_LINE.display}</p>
+  </div>
+</footer>

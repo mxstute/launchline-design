@@ -1,0 +1,53 @@
+---
+import Base from "../layouts/Base.astro";
+import CalEmbed from "../components/CalEmbed.astro";
+import DemoForm from "../components/DemoForm.astro";
+import PageHero from "../components/PageHero.astro";
+import { DEMO_LINE, site } from "../data/site";
+
+const title = "Book a Strategy Call | Launchline Design";
+const description =
+  "Book a 15-minute call with Myles Stute or request a free custom Loom. Launchline Design serves Miami local businesses. Call (786) 229-4730.";
+---
+
+<Base title={title} description={description}>
+  <PageHero
+    eyebrow="Contact"
+    title="Book a 15-minute call with Myles."
+    lede="We pick a package and map your calls. If you would rather see it on your website first, ask for the free 2-minute Loom."
+    crumbs={[
+      { href: "/", label: "Home" },
+      { href: "/contact", label: "Contact" },
+    ]}
+  />
+
+  <section class="section" id="book">
+    <div class="wrap split">
+      <div class="stack">
+        <h2>Reach the office</h2>
+        <p>
+          <a class="phone-display" href={`tel:${site.phoneTel}`}>{site.phoneDisplay}</a>
+        </p>
+        <p>
+          <a class="text-link" href={`mailto:${site.email}`}>{site.email}</a>
+        </p>
+        <p>Miami, Florida · Serving Miami-Dade County.</p>
+        <p>The 15 minutes cover how the phone rings today, which package fits, what the AI is allowed to say, and who gets the urgent alert.</p>
+        <p class="small">
+          This office number is Myles. Ava, the AI receptionist, is a different line: <a class="text-link" href={DEMO_LINE.href}>{DEMO_LINE.display}</a>.
+        </p>
+      </div>
+      <CalEmbed />
+    </div>
+  </section>
+
+  <section class="section" id="custom-demo" style="padding-top: 0">
+    <div class="wrap loom-grid">
+      <div>
+        <h2>Get my custom demo</h2>
+        <p class="lede">Send your website and we’ll record a free Loom showing exactly how AI would handle your calls and leads.</p>
+      </div>
+      <DemoForm id="contact-demo-form" />
+    </div>
+  </section>
+</Base>

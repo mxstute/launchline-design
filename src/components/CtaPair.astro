@@ -1,0 +1,23 @@
+---
+import { DEMO_LINE } from "../data/site";
+
+interface Props {
+  demo?: boolean;
+  book?: boolean;
+  loomHref?: string;
+}
+
+const { demo = true, book = true, loomHref } = Astro.props;
+---
+
+<div class="cta-row">
+  {
+    demo && (
+      <a class="btn btn-mint" href={DEMO_LINE.href}>
+        Call Ava now <span aria-hidden="true">·</span> {DEMO_LINE.display}
+      </a>
+    )
+  }
+  {book && <a class="btn btn-ghost" href="/contact">Book a 15-min strategy call</a>}
+  {loomHref && <a class="btn btn-primary" href={loomHref}>Get my custom demo</a>}
+</div>

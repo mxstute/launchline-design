@@ -1,0 +1,72 @@
+---
+import Logo from "./Logo.astro";
+import { nav, site } from "../data/site";
+
+const path = Astro.url.pathname.replace(/\/$/, "") || "/";
+
+function current(href: string): boolean {
+  return path === href;
+}
+
+const onSolutions = nav.solutions.some((item) => current(item.href));
+const onIndustries = nav.industries.some((item) => current(item.href));
+---
+
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap header-bar">
+    <Logo />
+    <nav class="desktop-nav" aria-label="Primary">
+      <details class="nav-drop" name="desktop-nav">
+        <summary class:list={[onSolutions && "is-current"]}>
+          Solutions <span class="caret" aria-hidden="true"></span>
+        </summary>
+        <div class="nav-panel">
+          {
+            nav.solutions.map((item) => (
+              <a href={item.href} aria-current={current(item.href) ? "page" : undefined}>
+                {item.label}
+                <small>{item.note}</small>
+              </a>
+            ))
+          }
+        </div>
+      </details>
+      <details class="nav-drop" name="desktop-nav">
+        <summary class:list={[onIndustries && "is-current"]}>
+          Industries <span class="caret" aria-hidden="true"></span>
+        </summary>
+        <div class="nav-panel">
+          {
+            nav.industries.map((item) => (
+              <a href={item.href} aria-current={current(item.href) ? "page" : undefined}>
+                {item.label}
+              </a>
+            ))
+          }
+        </div>
+      </details>
+      {
+        nav.primary.map((item) => (
+          <a href={item.href} aria-current={current(item.href) ? "page" : undefined}>
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+    <a class="btn btn-primary header-cta" href="/contact">Book a call</a>
+    <details class="mobile-nav">
+      <summary>Menu</summary>
+      <div class="mobile-panel">
+        <a class="btn btn-primary" href="/contact">Book a call</a>
+        <p class="mobile-label">Solutions</p>
+        {nav.solutions.map((item) => <a href={item.href}>{item.label}</a>)}
+        <p class="mobile-label">Industries</p>
+        {nav.industries.map((item) => <a href={item.href}>{item.label}</a>)}
+        <p class="mobile-label">Company</p>
+        {nav.company.map((item) => <a href={item.href}>{item.label}</a>)}
+        <a href={`tel:${site.phoneTel}`}>Office {site.phoneDisplay}</a>
+      </div>
+    </details>
+  </div>
+</header>

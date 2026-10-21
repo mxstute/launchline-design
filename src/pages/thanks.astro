@@ -1,0 +1,22 @@
+---
+import Base from "../layouts/Base.astro";
+import { site } from "../data/site";
+
+const title = "Demo request received | Launchline Design";
+const description = "If you just sent a custom demo request, Myles has it and will record the Loom.";
+---
+
+<Base title={title} description={description} noindex>
+  <section class="page-hero">
+    <div class="wrap prose">
+      <p class="eyebrow">Custom demo</p>
+      <h1>Request received.</h1>
+      <p class="lede">
+        If you landed here after the form, Myles has what he needs to record the 2-minute Loom. If you opened this page directly, the form is on the <a href="/demo#custom-demo">demo page</a>.
+      </p>
+      <p>
+        You can also call <a href={`tel:${site.phoneTel}`}>{site.phoneDisplay}</a> or email <a href={`mailto:${site.email}`}>{site.email}</a>.
+      </p>
+    </div>
+  </section>
+</Base>

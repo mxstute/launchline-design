@@ -1,0 +1,51 @@
+---
+import AvaSection from "../components/AvaSection.astro";
+import Base from "../layouts/Base.astro";
+import DemoForm from "../components/DemoForm.astro";
+import FinalCta from "../components/FinalCta.astro";
+import PageHero from "../components/PageHero.astro";
+import { DEMO_LINE, site } from "../data/site";
+
+const title = "Call Ava, the AI Receptionist | Launchline Design";
+const description = `Call Ava at ${DEMO_LINE.display}. She answers in English and Spanish, role-plays a roofing company, pest control company, or law firm, and books a time. Or request a free Loom.`;
+---
+
+<Base title={title} description={description}>
+  <PageHero
+    eyebrow="Demo"
+    title="Don’t take our word for it. Call Ava."
+    lede={`Ava answers at ${DEMO_LINE.display}. That line is the receptionist. ${site.phoneDisplay} is Myles, if you want a person.`}
+    crumbs={[
+      { href: "/", label: "Home" },
+      { href: "/demo", label: "Demo" },
+    ]}
+  />
+
+  <AvaSection loomHref="#custom-demo" />
+
+  <section class="section" id="sample-loom" style="padding-top: 0">
+    <div class="wrap">
+      <div class="slot">
+        <p class="slot-kicker">Sample Loom · empty</p>
+        <h3>No sample walkthrough is embedded yet.</h3>
+        <p style="margin-top: 0.6rem; max-width: 62ch">
+          When a real recording exists, it replaces this block. Until then, the useful demo is the one recorded on your website.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="custom-demo" style="padding-top: 0">
+    <div class="wrap loom-grid">
+      <div>
+        <p class="eyebrow">Your business</p>
+        <h2>Get my custom demo.</h2>
+        <p class="lede">
+          Send your website and we’ll record a free Loom showing exactly how AI would handle your calls and leads. Two minutes, personalized, no slide deck.
+        </p>
+      </div>
+      <DemoForm id="demo-page-form" />
+    </div>
+  </section>
+  <FinalCta />
+</Base>

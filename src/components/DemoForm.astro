@@ -1,0 +1,72 @@
+---
+import { formEndpoint, site } from "../data/site";
+
+interface Props {
+  id?: string;
+}
+
+const { id = "demo-form" } = Astro.props;
+const endpoint = formEndpoint();
+const source = Astro.url.pathname;
+---
+
+<form
+  id={id}
+  class="panel"
+  method="post"
+  action={endpoint ?? undefined}
+  aria-describedby={`${id}-note`}
+>
+  <p id={`${id}-note`} class="form-note">
+    {
+      endpoint
+        ? "Send your website and we’ll record a free 2-minute Loom showing exactly how AI would handle your calls and leads."
+        : "This form is visible, but delivery is not connected yet. Nothing you type will be sent. Email Myles@launchlinedesign.com, or set PUBLIC_DEMO_FORM_ENDPOINT and rebuild."
+    }
+  </p>
+  <div class="form-grid two" style="margin-top: 1rem">
+    <label>
+      Name
+      <input name="name" type="text" autocomplete="name" required placeholder="Your name" />
+    </label>
+    <label>
+      Business
+      <input name="business" type="text" autocomplete="organization" required placeholder="Business name" />
+    </label>
+    <label>
+      Website
+      <input name="website" type="text" autocomplete="url" required placeholder="yoursite.com or “no website”" />
+    </label>
+    <label>
+      Email
+      <input name="email" type="email" autocomplete="email" required placeholder="you@company.com" />
+    </label>
+    <label>
+      Phone
+      <input name="phone" type="tel" autocomplete="tel" required placeholder="(305) 555-0100" />
+    </label>
+    <label class="span-2">
+      Notes <span class="muted">optional</span>
+      <textarea name="notes" rows="4" placeholder="Hours, what the AI should handle, anything the Loom should show."></textarea>
+    </label>
+  </div>
+  <div class="hp" aria-hidden="true">
+    <label>
+      Leave this blank
+      <input name="company_website_confirm" type="text" tabindex="-1" autocomplete="off" />
+    </label>
+  </div>
+  <input type="hidden" name="source" value={source} />
+  <div class="cta-row">
+    <button class="btn btn-primary" type="submit" disabled={!endpoint}>Get my custom demo</button>
+    <a class="btn btn-ghost" href={`mailto:${site.email}?subject=Custom%20AI%20demo`}>Email Myles</a>
+  </div>
+  {
+    !endpoint && (
+      <p class="dev-note">
+        Placeholder endpoint. Set <code>PUBLIC_DEMO_FORM_ENDPOINT</code> to a URL that accepts a POST with
+        name, business, website, email, phone, notes, and source. Suggested redirect: /thanks
+      </p>
+    )
+  }
+</form>
