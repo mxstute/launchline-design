@@ -1281,11 +1281,11 @@ address {
 }
 
 .cal-live {
-  min-height: 680px;
-  overflow: auto;
+  min-height: 320px;
+  overflow: hidden;
   border-radius: 20px;
   border: 1px solid var(--line);
-  background: white;
+  background: #0c0f1a;
 }
 
 @media (min-width: 760px) {

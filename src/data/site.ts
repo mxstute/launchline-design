@@ -37,6 +37,12 @@ export const placeholders = {
   streetAddress: readEnv("PUBLIC_STREET_ADDRESS"),
 };
 
+/** Used when PUBLIC_DEMO_FORM_ENDPOINT is unset. */
+const DEFAULT_FORM_ENDPOINT = "https://formspree.io/f/xvzvrpow";
+
+/** Cal.com profile path. Visitors pick the event. Used when PUBLIC_CAL_LINK is unset. */
+const DEFAULT_CAL_LINK = "myles-stute-v7irmp";
+
 function usable(value: string): boolean {
   if (!value) return false;
   const lower = value.toLowerCase();
@@ -45,13 +51,16 @@ function usable(value: string): boolean {
   return true;
 }
 
-export function formEndpoint(): string | null {
-  return usable(placeholders.formEndpoint) ? placeholders.formEndpoint : null;
+export function formEndpoint(): string {
+  return usable(placeholders.formEndpoint) ? placeholders.formEndpoint : DEFAULT_FORM_ENDPOINT;
 }
 
-export function calLink(): string | null {
-  const value = placeholders.calLink.replace(/^https?:\/\/(www\.)?cal\.com\//, "").replace(/^\//, "");
-  return usable(value) ? value : null;
+export function calLink(): string {
+  const value = placeholders.calLink
+    .replace(/^https?:\/\/(www\.)?cal\.com\//i, "")
+    .replace(/^\//, "")
+    .replace(/\/$/, "");
+  return usable(value) ? value : DEFAULT_CAL_LINK;
 }
 
 export function streetAddress(): string | null {
